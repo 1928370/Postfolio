@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografia & Videomaker Mobile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dark-blue: #0a192f;
+            --darker-blue: #020c1b;
+            --dark-red: #8b0000;
+            --accent-red: #d90429;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--darker-blue);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--darker-blue) 50%, var(--dark-red) 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #ff4d4d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .portfolio-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Melhorias visuais globais */
+        /* Animação de fade-in para seções */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: none;
+        }
+        /* Botão com efeito neon */
+        .btn-primary {
+            box-shadow: 0 0 10px 2px #d90429, 0 0 20px 4px #4facfe33;
+            border: 2px solid #d90429;
+            letter-spacing: 1px;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #d90429 0%, #4facfe 100%);
+            color: #fff;
+            box-shadow: 0 0 20px 4px #d90429, 0 0 40px 8px #4facfe55;
+        }
+        /* Cartões de serviço com efeito glassmorphism */
+        .glass-card {
+            background: rgba(20, 30, 48, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 40px 0 #d9042944;
+            border-color: #d90429;
+        }
+        /* Títulos com efeito gradiente animado */
+        .gradient-text-animated {
+            background: linear-gradient(270deg, #4facfe, #00f2fe, #ff4d4d, #d90429, #4facfe);
+            background-size: 1000% 1000%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientMove 8s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% {background-position:0% 50%}
+            50% {background-position:100% 50%}
+            100% {background-position:0% 50%}
+        }
+        /* Inputs com efeito glow */
+        input:focus, textarea:focus {
+            box-shadow: 0 0 0 2px #d90429, 0 0 8px 2px #4facfe55;
+            border-color: #d90429;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Cabeçalho -->
+    <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold gradient-text">MobileVision</a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
+                    <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
+                    <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
+                    <a href="#services" class="nav-link text-white hover:text-red-400">Serviços</a>
+                    <a href="#contact" class="nav-link text-white hover:text-red-400">Contato</a>
+                </nav>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
+                <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
+                <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
+                <a href="#services" class="nav-link text-white hover:text-red-400">Serviços</a>
+                <a href="#contact" class="nav-link text-white hover:text-red-400">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">Capturando</span> momentos <br>
+                    <span class="text-white">com</span> <span class="gradient-text">excelência</span>
+                </h1>
+                <p class="text-lg text-gray-300 mb-8">
+                    Transformando visões em realidade através da fotografia e videografia mobile. 
+                    Cada clique conta uma história, cada frame é uma emoção.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#portfolio" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                        Ver Portfólio
+                    </a>
+                    <a href="#contact" class="border border-red-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-500 hover:bg-opacity-20 transition">
+                        Contato
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center">
+                <div class="mobile-showcase p-4 max-w-xs">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Fotografia mobile" 
+                             class="rounded-lg border-2 border-gray-700 shadow-xl">
+                        <div class="absolute -bottom-5 -right-5 bg-red-600 text-white p-2 rounded-full shadow-lg">
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Sobre</span> <span class="text-white">Mim</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <img src="img/eu.jpg" 
+                             alt="Fotógrafo" 
+                             class="rounded-full w-64 h-64 object-cover border-4 border-red-500 shadow-lg">
+                        <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
+                            <i class="fas fa-camera mr-2"></i> Fotógrafo
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva</h3>
+                    <p class="text-gray-300 mb-6">
+                        Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S22 Ultra para explorar e aprender cada vez mais sobre esse universo criativo.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <h4 class="font-bold text-white mb-2"><i class="fas fa-bolt text-red-500 mr-2"></i> Tecnologia Mobile</h4>
+                            <p class="text-gray-300 text-sm">
+                                Utilizo os mais avançados smartphones e acessórios para garantir qualidade profissional em cada captura.
+                            </p>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-white mb-2"><i class="fas fa-paint-brush text-blue-400 mr-2"></i> Edição Criativa</h4>
+                            <p class="text-gray-300 text-sm">
+                                Processo cada imagem e vídeo com técnicas avançadas de edição para realçar a essência de cada momento.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
+                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Fotografia</span>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
+                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Videografia</span>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
+                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Edição</span>
+                        </div>
+                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
+                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Pós-produção</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section id="portfolio" class="py-20 px-6 fade-in">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">Meu</span> <span class="gradient-text">Portfólio</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
+                    Explore minha coleção de trabalhos que mostram a versatilidade e qualidade da fotografia e videografia mobile.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Item 1 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Retrato" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Retrato Urbano</h3>
+                        <p class="text-gray-300 text-sm">Capturado com S22 Ultra</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Paisagem" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Horizonte Dourado</h3>
+                        <p class="text-gray-300 text-sm">Capturado com Samsung Galaxy S22 Ultra</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Natureza" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Reflexos da Natureza</h3>
+                        <p class="text-gray-300 text-sm">Capturado com S22 Ultra</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="img/S22_nightography-e1645799937603.jpg" 
+                             alt="Evento" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Momento de Alegria</h3>
+                        <p class="text-gray-300 text-sm">Capturado com S22 Ultra</p>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Moda" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Estilo Urbano</h3>
+                        <p class="text-gray-300 text-sm">Capturado com S22 Ultra</p>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="portfolio-item rounded-lg overflow-hidden bg-gray-900 bg-opacity-50">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                             alt="Produto" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="text-white bg-red-500 px-6 py-2 rounded-full font-semibold">
+                                Ver Detalhes
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2">Fotografia de Produto</h3>
+                        <p class="text-gray-300 text-sm">Capturado com S22 Ultra</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block">
+                    Ver Mais Trabalhos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text-animated">
+                    <span>Serviços</span> <span class="text-white">Oferecidos</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
+                    Soluções completas em fotografia e videografia mobile para atender suas necessidades criativas.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Serviço 1 -->
+                <div class="glass-card p-8">
+                    <div class="text-red-500 text-4xl mb-6">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Fotografia Profissional</h3>
+                    <p class="text-gray-300 mb-6">
+                        Captura de imagens de alta qualidade utilizando smartphones de última geração, 
+                        com técnicas profissionais de iluminação e composição.
+                    </p>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Retratos
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Paisagens
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Eventos
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Produtos
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Serviço 2 -->
+                <div class="glass-card p-8">
+                    <div class="text-red-500 text-4xl mb-6">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Videografia Criativa</h3>
+                    <p class="text-gray-300 mb-6">
+                        Produção de vídeos profissionais com smartphones, incluindo filmagem, 
+                        edição e pós-produção para diversos fins e plataformas.
+                    </p>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Vídeos promocionais
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Eventos sociais
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Conteúdo para redes
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Documentários
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Serviço 3 -->
+                <div class="glass-card p-8">
+                    <div class="text-red-500 text-4xl mb-6">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Edição e Pós-Produção</h3>
+                    <p class="text-gray-300 mb-6">
+                        Serviços profissionais de edição de imagem e vídeo, incluindo correção de cor, 
+                        ajuste de iluminação, adição de efeitos especiais e muito mais.
+                    </p>
+                    <ul class="text-gray-300 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Edição de Vídeo
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Retoque de Imagens
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Criação de Efeitos
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-red-500 mr-2"></i> Montagem e Finalização
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Contato</span> <span class="text-white">Vamos Conversar</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
+                    Pronto para transformar suas ideias em realidade? Entre em contato e vamos discutir seu projeto!
+                </p>
+            </div>
+            
+            <div class="max-w-xl mx-auto bg-gray-900 bg-opacity-50 p-8 rounded-lg shadow-lg">
+                <form id="contact-form" action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-white mb-2">Nome</label>
+                        <input type="text" id="name" name="name" required 
+                               class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-white mb-2">E-mail</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-semibold text-white mb-2">Mensagem</label>
+                        <textarea id="message" name="message" rows="4" required 
+                                  class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                            Enviar Mensagem
+                        </button>
+                    </div>
+                </form>
+                <script>
+                    document.getElementById('contact-form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var nome = document.getElementById('name').value;
+                        var email = document.getElementById('email').value;
+                        var mensagem = document.getElementById('message').value;
+                        var texto = encodeURIComponent('Nome: ' + nome + '\nE-mail: ' + email + '\nMensagem: ' + mensagem);
+                        var url = 'https://wa.me/5534988302860?text=' + texto;
+                        window.open(url, '_blank');
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="py-10 px-6 bg-black bg-opacity-90">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400 text-sm">
+                &copy; 2025 MobileVision. Todos os direitos reservados.
+            </p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="social-icon text-gray-400 hover:text-red-500 transition">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon text-gray-400 hover:text-red-500 transition">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Fade-in animado para cada seção ao rolar
+        window.addEventListener('DOMContentLoaded', function() {
+            const fadeEls = document.querySelectorAll('.fade-in');
+            const onScroll = () => {
+                fadeEls.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if(rect.top < window.innerHeight - 60) {
+                        el.classList.add('visible');
+                    }
+                });
+            };
+            window.addEventListener('scroll', onScroll);
+            onScroll();
+        });
+    </script>
+</body>
+</html>
