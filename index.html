@@ -134,6 +134,13 @@
         .social-icon:hover {
             transform: translateY(-3px) scale(1.1);
         }
+
+        .business-card { perspective: 1000px; }
+        .card-inner { transition: transform 0.8s; transform-style: preserve-3d; position: relative; }
+        .card-front, .card-back { backface-visibility: hidden; width: 100%; min-height: 480px; }
+        .card-back { transform: rotateY(180deg); position: absolute; top: 0; left: 0; }
+        .business-card.flipped .card-inner { transform: rotateY(180deg); }
+        .gradient-text { background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -222,22 +229,35 @@
             
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="relative">
-                        <img src="img/eu.jpg" 
-                             alt="Fotógrafo" 
-                             class="rounded-full w-64 h-64 object-cover border-4 border-red-500 shadow-lg">
-                        <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
-                            <i class="fas fa-camera mr-2"></i> Fotógrafo
+                    <div class="relative flex flex-col items-center gap-16 md:gap-16 md:flex-col">
+                        <div class="relative mb-8 md:mb-0">
+                            <img src="img/eu.jpg" alt="Fotógrafo Yuri Silva" class="rounded-full w-64 h-64 object-cover border-4 border-red-500 shadow-lg">
+                            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
+                                <i class="fas fa-camera mr-2"></i> Yuri Silva
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <img src="img/Davi.png" alt="Fotógrafo Davi Gomes" class="rounded-full w-64 h-64 object-cover border-4 border-blue-500 shadow-lg">
+                            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
+                                <i class="fas fa-camera mr-2"></i> Davi Gomes
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="md:w-2/3 md:pl-12">
-                    <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva</h3>
-                    <p class="text-gray-300 mb-6">
-                        Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S22 Ultra para explorar e aprender cada vez mais sobre esse universo criativo.
-                    </p>
-                    
+                    <div class="mb-10">
+                        <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva</h3>
+                        <p class="text-gray-300 mb-6">
+                            Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S22 Ultra para explorar e aprender cada vez mais sobre esse universo criativo.
+                        </p>
+                    </div>
+                    <div class="mb-10">
+                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Olá, eu sou Davi Gomes</h3>
+                        <p class="text-gray-300 mb-6">
+                            Entusiasta da fotografia, busco eternizar emoções e histórias através das lentes do meu smartphone. Acredito que cada imagem tem o poder de inspirar e conectar pessoas, e estou sempre em busca de novos olhares e experiências para compartilhar.
+                        </p>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border-l-4 border-red-500">
                             <h4 class="font-bold text-white mb-2"><i class="fas fa-bolt text-red-500 mr-2"></i> Tecnologia Mobile</h4>
@@ -537,16 +557,81 @@
                         </button>
                     </div>
                 </form>
+                <!-- Modal de escolha de destinatário -->
+                <div id="choose-recipient-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
+                    <div class="bg-gray-900 rounded-xl p-8 shadow-2xl max-w-xs w-full text-center border-2 border-red-500">
+                        <h3 class="text-xl font-bold mb-6 text-white">Para quem deseja enviar?</h3>
+                        <div class="flex flex-col gap-4">
+                            <button id="send-yuri" class="btn-primary text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Yuri Silva</button>
+                            <button id="send-davi" class="btn-primary text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Davi Gomes</button>
+                        </div>
+                        <button id="close-modal" class="mt-6 text-gray-400 hover:text-red-400">Cancelar</button>
+                    </div>
+                </div>
                 <script>
-                    document.getElementById('contact-form').addEventListener('submit', function(e) {
+                // Modal de escolha de destinatário e envio WhatsApp personalizado
+                (function() {
+                    const form = document.getElementById('contact-form');
+                    const modal = document.getElementById('choose-recipient-modal');
+                    const btnYuri = document.getElementById('send-yuri');
+                    const btnDavi = document.getElementById('send-davi');
+                    const btnClose = document.getElementById('close-modal');
+                    let formData = {};
+
+                    function buildMessage(nome, email, mensagem) {
+                        return encodeURIComponent(
+                            `📸 *Novo Contato MobileVision!*\n\n` +
+                            `👤 *Nome:* ${nome}\n` +
+                            `✉️ *E-mail:* ${email}\n` +
+                            `💬 *Mensagem:*\n${mensagem}\n\n` +
+                            `✨ _Mensagem enviada pelo site do portfólio!_`
+                        );
+                    }
+
+                    form.addEventListener('submit', function(e) {
                         e.preventDefault();
-                        var nome = document.getElementById('name').value;
-                        var email = document.getElementById('email').value;
-                        var mensagem = document.getElementById('message').value;
-                        var texto = encodeURIComponent('Nome: ' + nome + '\nE-mail: ' + email + '\nMensagem: ' + mensagem);
-                        var url = 'https://wa.me/5534988302860?text=' + texto;
-                        window.open(url, '_blank');
+                        formData = {
+                            nome: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            mensagem: document.getElementById('message').value
+                        };
+                        modal.classList.remove('hidden');
                     });
+
+                    btnYuri.addEventListener('click', function() {
+                        const texto = buildMessage(formData.nome, formData.email, formData.mensagem);
+                        sendToSheet({
+                            nome: formData.nome,
+                            email: formData.email,
+                            mensagem: formData.mensagem,
+                            destinatario: 'Yuri Silva',
+                            data: new Date().toLocaleString('pt-BR')
+                        });
+                        const url = `https://wa.me/5534988302860?text=${texto}`;
+                        window.open(url, '_blank');
+                        modal.classList.add('hidden');
+                    });
+                    btnDavi.addEventListener('click', function() {
+                        const texto = buildMessage(formData.nome, formData.email, formData.mensagem);
+                        sendToSheet({
+                            nome: formData.nome,
+                            email: formData.email,
+                            mensagem: formData.mensagem,
+                            destinatario: 'Davi Gomes',
+                            data: new Date().toLocaleString('pt-BR')
+                        });
+                        const url = `https://wa.me/5534992079251?text=${texto}`;
+                        window.open(url, '_blank');
+                        modal.classList.add('hidden');
+                    });
+                    btnClose.addEventListener('click', function() {
+                        modal.classList.add('hidden');
+                    });
+                    // Fecha modal ao clicar fora
+                    modal.addEventListener('click', function(e) {
+                        if(e.target === modal) modal.classList.add('hidden');
+                    });
+                })();
                 </script>
             </div>
         </div>
@@ -585,6 +670,37 @@
             window.addEventListener('scroll', onScroll);
             onScroll();
         });
+
+        // Animação de flip para o cartão de visita
+        document.addEventListener('DOMContentLoaded', function() {
+          var card = document.querySelector('.business-card');
+          if(card) {
+            card.addEventListener('click', function() {
+              var inner = card.querySelector('.card-inner');
+              var back = card.querySelector('.card-back');
+              if(card.classList.toggle('flipped')) {
+                back.classList.remove('hidden');
+                inner.style.transform = 'rotateY(180deg)';
+              } else {
+                back.classList.add('hidden');
+                inner.style.transform = '';
+              }
+            });
+          }
+        });
+    </script>
+    <script>
+    function sendToSheet(data) {
+        const endpoint = 'https://script.google.com/macros/library/d/1D5dW2LY4GvLpeaQ3SSLPmCZkT9xLpmyUCgXfMOaJ5xrV-79rd7K9AqFF/2';
+        fetch(endpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    }
     </script>
 </body>
 </html>
