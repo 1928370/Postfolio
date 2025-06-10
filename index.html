@@ -7,140 +7,183 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --dark-blue: #0a192f;
-            --darker-blue: #020c1b;
-            --dark-red: #8b0000;
-            --accent-red: #d90429;
+    :root {
+        --dark-blue: #0a192f;
+        --darker-blue: #020c1b;
+        --dark-red: #8b0000;
+        --accent-red: #d90429;
+        --glass-bg: rgba(20, 30, 48, 0.65);
+        --glass-border: rgba(255,255,255,0.18);
+        --neon-pink: #ff4dff;
+        --neon-blue: #4facfe;
+        --neon-purple: #a259ff;
+    }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #0a192f 0%, #1a0033 100%);
+        color: white;
+        overflow-x: hidden;
+    }
+    .gradient-bg {
+        background: linear-gradient(135deg, #0a192f 0%, #1a0033 50%, #8b0000 100%);
+    }
+    .gradient-text {
+        background: linear-gradient(90deg, #4facfe 0%, #a259ff 50%, #ff4dff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 2px 8px #a259ff88);
+    }
+    .nav-link {
+        position: relative;
+        transition: color 0.3s;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background: linear-gradient(90deg, #ff4dff, #4facfe);
+        transition: width 0.3s;
+        border-radius: 2px;
+    }
+    .nav-link:hover, .nav-link:focus {
+        color: #ff4dff;
+        text-shadow: 0 0 8px #ff4dff99;
+    }
+    .nav-link:hover::after, .nav-link:focus::after {
+        width: 100%;
+    }
+    header {
+        background: rgba(10, 25, 47, 0.85);
+        box-shadow: 0 4px 32px 0 #a259ff33;
+        backdrop-filter: blur(12px);
+        border-bottom: 1.5px solid #a259ff33;
+    }
+    .btn-primary {
+        background: linear-gradient(90deg, #a259ff 0%, #4facfe 100%);
+        border: none;
+        box-shadow: 0 0 16px 2px #a259ff55, 0 0 32px 8px #4facfe33;
+        letter-spacing: 1px;
+        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+        background: linear-gradient(90deg, #ff4dff 0%, #4facfe 100%);
+        box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
+        transform: scale(1.05);
+    }
+    .glass-card {
+        background: var(--glass-bg);
+        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+        backdrop-filter: blur(12px);
+        border-radius: 24px;
+        border: 1.5px solid var(--glass-border);
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .glass-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+        border-color: #a259ff;
+    }
+    .gradient-text-animated {
+        background: linear-gradient(270deg, #4facfe, #a259ff, #ff4dff, #d90429, #4facfe);
+        background-size: 1000% 1000%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradientMove 8s ease infinite;
+        filter: drop-shadow(0 2px 8px #a259ff88);
+    }
+    @keyframes gradientMove {
+        0% {background-position:0% 50%}
+        50% {background-position:100% 50%}
+        100% {background-position:0% 50%}
+    }
+    input, textarea, select {
+        background: rgba(30, 30, 50, 0.95)!important;
+        border: 1.5px solid #a259ff!important;
+        color: #fff!important;
+        box-shadow: 0 0 0 0 #a259ff00;
+        transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+        box-shadow: 0 0 0 2px #ff4dff, 0 0 12px 2px #4facfe99;
+        border-color: #ff4dff;
+        outline: none;
+    }
+    .portfolio-item {
+        background: var(--glass-bg);
+        border: 1.5px solid #a259ff33;
+        box-shadow: 0 4px 24px 0 #4facfe22;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .portfolio-item:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+        border-color: #ff4dff;
+    }
+    .business-card {
+        background: var(--glass-bg);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+        border: 1.5px solid #a259ff55;
+        transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .business-card:hover {
+        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+        border-color: #ff4dff;
+    }
+    .mobile-showcase img {
+        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+        border: 2px solid #a259ff;
+        transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .mobile-showcase img:hover {
+        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+        border-color: #ff4dff;
+    }
+    .social-icon {
+        transition: all 0.3s;
+        filter: drop-shadow(0 2px 8px #a259ff55);
+    }
+    .social-icon:hover {
+        color: #ff4dff!important;
+        transform: translateY(-3px) scale(1.1);
+        filter: drop-shadow(0 2px 16px #ff4dff99);
+    }
+    footer {
+        background: rgba(10, 25, 47, 0.95);
+        box-shadow: 0 -4px 32px 0 #a259ff33;
+        border-top: 1.5px solid #a259ff33;
+        backdrop-filter: blur(8px);
+    }
+    footer img {
+        filter: drop-shadow(0 4px 24px #a259ff99);
+    }
+    /* Fade-in animado para cada seção ao rolar */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: none;
+    }
+    /* Pequenos ajustes de espaçamento e responsividade */
+    @media (max-width: 768px) {
+        .glass-card, .portfolio-item, .business-card {
+            border-radius: 16px;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--darker-blue);
-            color: white;
-            overflow-x: hidden;
+        .mobile-showcase img {
+            border-radius: 16px;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--darker-blue) 50%, var(--dark-red) 100%);
+        .gradient-text, .gradient-text-animated {
+            font-size: 1.5rem;
         }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #ff4d4d 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: var(--accent-red);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .portfolio-item {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
-        }
-        
-        /* Melhorias visuais globais */
-        /* Animação de fade-in para seções */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: none;
-        }
-        /* Botão com efeito neon */
-        .btn-primary {
-            box-shadow: 0 0 10px 2px #d90429, 0 0 20px 4px #4facfe33;
-            border: 2px solid #d90429;
-            letter-spacing: 1px;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(90deg, #d90429 0%, #4facfe 100%);
-            color: #fff;
-            box-shadow: 0 0 20px 4px #d90429, 0 0 40px 8px #4facfe55;
-        }
-        /* Cartões de serviço com efeito glassmorphism */
-        .glass-card {
-            background: rgba(20, 30, 48, 0.7);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.18);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .glass-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 16px 40px 0 #d9042944;
-            border-color: #d90429;
-        }
-        /* Títulos com efeito gradiente animado */
-        .gradient-text-animated {
-            background: linear-gradient(270deg, #4facfe, #00f2fe, #ff4d4d, #d90429, #4facfe);
-            background-size: 1000% 1000%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradientMove 8s ease infinite;
-        }
-        @keyframes gradientMove {
-            0% {background-position:0% 50%}
-            50% {background-position:100% 50%}
-            100% {background-position:0% 50%}
-        }
-        /* Inputs com efeito glow */
-        input:focus, textarea:focus {
-            box-shadow: 0 0 0 2px #d90429, 0 0 8px 2px #4facfe55;
-            border-color: #d90429;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .social-icon:hover {
-            transform: translateY(-3px) scale(1.1);
-        }
-
-        .business-card { perspective: 1000px; }
-        .card-inner { transition: transform 0.8s; transform-style: preserve-3d; position: relative; }
-        .card-front, .card-back { backface-visibility: hidden; width: 100%; min-height: 480px; }
-        .card-back { transform: rotateY(180deg); position: absolute; top: 0; left: 0; }
-        .business-card.flipped .card-inner { transform: rotateY(180deg); }
-        .gradient-text { background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -148,7 +191,8 @@
     <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div class="flex items-center">
+                <div class="flex items-center gap-3">
+                    <img src="img/logo.png" alt="Logo MobileVision" class="h-10 w-10 object-contain rounded-full shadow-md bg-white bg-opacity-10">
                     <a href="#" class="text-2xl font-bold gradient-text">MobileVision</a>
                 </div>
                 
@@ -156,8 +200,8 @@
                     <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
                     <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
                     <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
-                    <a href="#services" class="nav-link text-white hover:text-red-400">Serviços</a>
-                    <a href="#contact" class="nav-link text-white hover:text-red-400">Contato</a>
+                    <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
+                    <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
                 </nav>
                 
                 <div class="md:hidden">
@@ -174,8 +218,8 @@
                 <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
                 <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
                 <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
-                <a href="#services" class="nav-link text-white hover:text-red-400">Serviços</a>
-                <a href="#contact" class="nav-link text-white hover:text-red-400">Contato</a>
+                <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
+                <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
             </div>
         </div>
     </header>
@@ -193,10 +237,10 @@
                     Cada clique conta uma história, cada frame é uma emoção.
                 </p>
                 <div class="flex space-x-4">
-                    <a href="#portfolio" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
-                        Ver Portfólio
+                    <a href="https://www.instagram.com/mobilevision4/" target="_blank" rel="noopener" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                        Instagram
                     </a>
-                    <a href="#contact" class="border border-red-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-500 hover:bg-opacity-20 transition">
+                    <a href="#booking" class="border border-red-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-500 hover:bg-opacity-20 transition">
                         Contato
                     </a>
                 </div>
@@ -416,237 +460,292 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="https://drive.google.com/drive/folders/1pDnA4cFdPzpJ4NvqpQ7arTiundVfdgb_" target="_blank" rel="noopener" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block">
-                    Ver Mais Trabalhos
+                <a href="https://www.instagram.com/mobilevision4/" target="_blank" rel="noopener" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block">
+                    Ver no Instagram
+                </a>
+                <a href="https://drive.google.com/drive/folders/1pDnA4cFdPzpJ4NvqpQ7arTiundVfdgb_?usp=drive_link" target="_blank" rel="noopener" class="btn-primary text-white px-8 py-3 rounded-full font-semibold inline-block ml-4 mt-4 md:mt-0">
+                    Fotos Google Drive
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Serviços -->
-    <section id="services" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+    <section id="services" class="py-20 px-6 fade-in">
         <div class="container mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text-animated">
-                    <span>Serviços</span> <span class="text-white">Oferecidos</span>
-                </h2>
-                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
-                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
-                    Soluções completas em fotografia e videografia mobile para atender suas necessidades criativas.
-                </p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text-animated">Nossos <span class="text-purple-400">Serviços</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Utilizamos tecnologia móvel de ponta combinada com equipamentos profissionais para entregar resultados excepcionais.</p>
             </div>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Serviço 1 -->
-                <div class="glass-card p-8">
-                    <div class="text-red-500 text-4xl mb-6">
-                        <i class="fas fa-camera-retro"></i>
+                <div class="glass-card p-8 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-purple-900 bg-opacity-60 rounded-full flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fas fa-camera-retro text-purple-300 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Fotografia Profissional</h3>
-                    <p class="text-gray-300 mb-6">
-                        Captura de imagens de alta qualidade utilizando smartphones de última geração, 
-                        com técnicas profissionais de iluminação e composição.
-                    </p>
-                    <ul class="text-gray-300 space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Retratos
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Paisagens
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Eventos
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Produtos
-                        </li>
+                    <h3 class="text-xl font-bold text-white mb-3">Fotografia Profissional</h3>
+                    <p class="text-gray-300 mb-4">Imagens de alta qualidade capturadas com Samsung S22 Ultra e equipamentos complementares para realçar cada detalhe.</p>
+                    <ul class="space-y-2 text-gray-200">
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Retratos</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Eventos</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Produtos</li>
                     </ul>
                 </div>
-                
                 <!-- Serviço 2 -->
-                <div class="glass-card p-8">
-                    <div class="text-red-500 text-4xl mb-6">
-                        <i class="fas fa-video"></i>
+                <div class="glass-card p-8 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-900 bg-opacity-60 rounded-full flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fas fa-video text-blue-300 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Videografia Criativa</h3>
-                    <p class="text-gray-300 mb-6">
-                        Produção de vídeos profissionais com smartphones, incluindo filmagem, 
-                        edição e pós-produção para diversos fins e plataformas.
-                    </p>
-                    <ul class="text-gray-300 space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Vídeos promocionais
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Eventos sociais
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Conteúdo para redes
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Documentários
-                        </li>
+                    <h3 class="text-xl font-bold text-white mb-3">Videografia Premium</h3>
+                    <p class="text-gray-300 mb-4">Gravações estáveis e cinegrip com uso de gimbal profissional, capturando movimentos suaves e imagens nítidas.</p>
+                    <ul class="space-y-2 text-gray-200">
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Eventos</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Clipes</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Vídeos promocionais</li>
                     </ul>
                 </div>
-                
                 <!-- Serviço 3 -->
-                <div class="glass-card p-8">
-                    <div class="text-red-500 text-4xl mb-6">
-                        <i class="fas fa-paint-brush"></i>
+                <div class="glass-card p-8 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-yellow-400 bg-opacity-30 rounded-full flex items-center justify-center mb-5 shadow-lg">
+                        <i class="fas fa-paint-brush text-yellow-300 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Edição e Pós-Produção</h3>
-                    <p class="text-gray-300 mb-6">
-                        Serviços profissionais de edição de imagem e vídeo, incluindo correção de cor, 
-                        ajuste de iluminação, adição de efeitos especiais e muito mais.
-                    </p>
-                    <ul class="text-gray-300 space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Edição de Vídeo
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Retoque de Imagens
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Criação de Efeitos
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-500 mr-2"></i> Montagem e Finalização
-                        </li>
+                    <h3 class="text-xl font-bold text-white mb-3">Edição Profissional</h3>
+                    <p class="text-gray-300 mb-4">Processamento digital avançado em notebook especializado, garantindo cores vibrantes e ajustes precisos.</p>
+                    <ul class="space-y-2 text-gray-200">
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Fotos (Lightroom, Photoshop)</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Vídeos (Premiere, DaVinci)</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Efeitos especiais</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contato -->
-    <section id="contact" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+    <!-- Seção Tecnologia Premium -->
+    <section class="py-20 px-6 bg-black bg-opacity-30 fade-in">
         <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="gradient-text">Contato</span> <span class="text-white">Vamos Conversar</span>
-                </h2>
-                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
-                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
-                    Pronto para transformar suas ideias em realidade? Entre em contato e vamos discutir seu projeto!
-                </p>
-            </div>
-            
-            <div class="max-w-xl mx-auto bg-gray-900 bg-opacity-50 p-8 rounded-lg shadow-lg">
-                <form id="contact-form" action="#" method="POST" class="space-y-4">
-                    <div>
-                        <label for="name" class="block text-sm font-semibold text-white mb-2">Nome</label>
-                        <input type="text" id="name" name="name" required 
-                               class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none">
-                    </div>
-                    
-                    <div>
-                        <label for="email" class="block text-sm font-semibold text-white mb-2">E-mail</label>
-                        <input type="email" id="email" name="email" required 
-                               class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none">
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-sm font-semibold text-white mb-2">Mensagem</label>
-                        <textarea id="message" name="message" rows="4" required 
-                                  class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-red-500 focus:outline-none"></textarea>
-                    </div>
-                    
-                    <div class="flex justify-center">
-                        <button type="submit" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
-                            Enviar Mensagem
-                        </button>
-                    </div>
-                </form>
-                <!-- Modal de escolha de destinatário -->
-                <div id="choose-recipient-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
-                    <div class="bg-gray-900 rounded-xl p-8 shadow-2xl max-w-xs w-full text-center border-2 border-red-500">
-                        <h3 class="text-xl font-bold mb-6 text-white">Para quem deseja enviar?</h3>
-                        <div class="flex flex-col gap-4">
-                            <button id="send-yuri" class="btn-primary text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Yuri Silva</button>
-                            <button id="send-davi" class="btn-primary text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Davi Gomes</button>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text-animated">Tecnologia <span class="text-purple-400">Premium</span></h2>
+                    <p class="text-gray-300 mb-8">Utilizamos equipamentos de última geração combinados com técnicas profissionais para garantir a melhor qualidade:</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-purple-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
+                                <i class="fas fa-mobile-alt text-purple-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-white mb-1">Samsung Galaxy S22 Ultra</h4>
+                                <p class="text-gray-300">Câmera principal de 108MP, zoom óptico 10x e gravação 8K para imagens incríveis.</p>
+                            </div>
                         </div>
-                        <button id="close-modal" class="mt-6 text-gray-400 hover:text-red-400">Cancelar</button>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-blue-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
+                                <i class="fas fa-camera text-blue-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-white mb-1">Câmera Nikon (opcional)</h4>
+                                <p class="text-gray-300">Para situações que demandam ainda mais qualidade e controle manual.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 bg-green-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
+                                <i class="fas fa-sliders-h text-green-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-white mb-1">Gimbal Profissional</h4>
+                                <p class="text-gray-300">Estabilização perfeita para vídeos suaves e movimentos cinematográficos.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <script>
-                // Modal de escolha de destinatário e envio WhatsApp personalizado
-                (function() {
-                    const form = document.getElementById('contact-form');
-                    const modal = document.getElementById('choose-recipient-modal');
-                    const btnYuri = document.getElementById('send-yuri');
-                    const btnDavi = document.getElementById('send-davi');
-                    const btnClose = document.getElementById('close-modal');
-                    let formData = {};
-
-                    function buildMessage(nome, email, mensagem) {
-                        return encodeURIComponent(
-                            `📸 *Novo Contato MobileVision!*\n\n` +
-                            `👤 *Nome:* ${nome}\n` +
-                            `✉️ *E-mail:* ${email}\n` +
-                            `💬 *Mensagem:*\n${mensagem}\n\n` +
-                            `✨ _Mensagem enviada pelo site do portfólio!_`
-                        );
-                    }
-
-                    form.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        formData = {
-                            nome: document.getElementById('name').value,
-                            email: document.getElementById('email').value,
-                            mensagem: document.getElementById('message').value
-                        };
-                        modal.classList.remove('hidden');
-                    });
-
-                    btnYuri.addEventListener('click', function() {
-                        const texto = buildMessage(formData.nome, formData.email, formData.mensagem);
-                        sendToSheet({
-                            nome: formData.nome,
-                            email: formData.email,
-                            mensagem: formData.mensagem,
-                            destinatario: 'Yuri Silva',
-                            data: new Date().toLocaleString('pt-BR')
-                        });
-                        const url = `https://wa.me/5534988302860?text=${texto}`;
-                        window.open(url, '_blank');
-                        modal.classList.add('hidden');
-                    });
-                    btnDavi.addEventListener('click', function() {
-                        const texto = buildMessage(formData.nome, formData.email, formData.mensagem);
-                        sendToSheet({
-                            nome: formData.nome,
-                            email: formData.email,
-                            mensagem: formData.mensagem,
-                            destinatario: 'Davi Gomes',
-                            data: new Date().toLocaleString('pt-BR')
-                        });
-                        const url = `https://wa.me/5534992079251?text=${texto}`;
-                        window.open(url, '_blank');
-                        modal.classList.add('hidden');
-                    });
-                    btnClose.addEventListener('click', function() {
-                        modal.classList.add('hidden');
-                    });
-                    // Fecha modal ao clicar fora
-                    modal.addEventListener('click', function(e) {
-                        if(e.target === modal) modal.classList.add('hidden');
-                    });
-                })();
-                </script>
+                <div class="md:w-1/2 relative mt-10 md:mt-0">
+                    <div class="relative max-w-md mx-auto grid grid-cols-2 gap-6">
+                        <div class="glass-card p-6 flex flex-col items-center">
+                            <img src="img/S22_nightography-e1645799937603.jpg" alt="Samsung S22 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <h4 class="font-bold text-white">S22 Ultra</h4>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center">
+                            <img src="img/nikon.png" alt="Nikon Camera" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <h4 class="font-bold text-white">Nikon</h4>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center">
+                            <img src="img/Gimbal.png" alt="Gimbal" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <h4 class="font-bold text-white">Gimbal</h4>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center">
+                            <i class="fas fa-laptop-code text-5xl text-purple-400 mb-4"></i>
+                            <h4 class="font-bold text-white">Edição Premium</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Contato / Agendamento -->
+    <section id="booking" class="py-20 px-6 fade-in bg-black bg-opacity-60">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto glass-card overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-purple-900 via-purple-800 to-black bg-opacity-90 p-10 flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold mb-6 gradient-text-animated">Agende Sua Sessão</h2>
+                        <p class="mb-6 opacity-90 text-gray-200">Preencha o formulário ao lado e entraremos em contato para confirmar os detalhes do seu projeto fotográfico ou de videografia.</p>
+                        <div class="flex items-center mb-4 text-gray-200">
+                            <i class="fas fa-phone-alt mr-4 text-xl"></i>
+                            <span class="font-semibold">Yuri Silva:</span> <span class="ml-2">+55 34 98830-2860</span>
+                        </div>
+                        <div class="flex items-center mb-4 text-gray-200">
+                            <i class="fas fa-phone-alt mr-4 text-xl"></i>
+                            <span class="font-semibold">Davi Gomes:</span> <span class="ml-2">+55 34 99207-9251</span>
+                        </div>
+                        <div class="flex items-center text-gray-200">
+                            <i class="fas fa-envelope mr-4 text-xl"></i>
+                            <span>yurisilva@zt1cw.onmicrosoft.com</span>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-10 bg-black bg-opacity-60 text-gray-100">
+                        <form id="booking-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-200 mb-1">Nome Completo*</label>
+                                <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-200 mb-1">Email*</label>
+                                <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-200 mb-1">Telefone*</label>
+                                <input type="tel" id="phone" name="phone" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <label for="service" class="block text-sm font-medium text-gray-200 mb-1">Serviço Desejado*</label>
+                                <select id="service" name="service" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white rounded-lg focus:border-pink-500 focus:ring-pink-500">
+                                    <option value="">-- Selecione --</option>
+                                    <option value="fotografia">Fotografia</option>
+                                    <option value="videografia">Videografia</option>
+                                    <option value="ambos">Fotografia + Videografia</option>
+                                    <option value="edicao">Edição de Fotos/Vídeos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-200 mb-1">Data Preferencial</label>
+                                <input type="date" id="date" name="date" class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white rounded-lg focus:border-pink-500 focus:ring-pink-500">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-200 mb-1">Detalhes do Projeto</label>
+                                <textarea id="message" name="message" rows="3" class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="button" id="open-modal" class="w-full bg-gradient-to-r from-purple-700 via-pink-500 to-purple-800 text-white font-bold py-3 px-6 rounded-lg hover:from-pink-600 hover:to-purple-900 transition focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                                </button>
+                            </div>
+                        </form>
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
+                            <i class="fas fa-check-circle mr-2"></i> Seu agendamento foi enviado com sucesso! Entraremos em contato em breve.
+                        </div>
+                        <!-- Modal de escolha de destinatário -->
+                        <div id="modal-destinatario" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
+                            <div class="bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-xs w-full border-2 border-purple-700">
+                                <h3 class="text-xl font-bold text-white mb-6 text-center">Enviar para:</h3>
+                                <div class="flex flex-col gap-4">
+                                    <button id="send-yuri" class="w-full bg-gradient-to-r from-purple-700 via-pink-500 to-purple-800 text-white font-bold py-3 rounded-lg hover:from-pink-600 hover:to-purple-900 transition flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Yuri Silva</button>
+                                    <button id="send-davi" class="w-full bg-gradient-to-r from-purple-700 via-blue-500 to-purple-800 text-white font-bold py-3 rounded-lg hover:from-blue-600 hover:to-purple-900 transition flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Davi Gomes</button>
+                                </div>
+                                <button id="close-modal" class="mt-6 w-full text-gray-400 hover:text-pink-400 text-sm">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+    // Função para montar mensagem personalizada
+    function buildBookingMessage(data) {
+        return encodeURIComponent(
+            `📸 *Novo Agendamento MobileVision!*\n\n` +
+            `👤 *Nome:* ${data.name}\n` +
+            `✉️ *E-mail:* ${data.email}\n` +
+            `📱 *Telefone:* ${data.phone}\n` +
+            `🗓️ *Data:* ${data.date || '-'}\n` +
+            `🎯 *Serviço:* ${data.service}\n` +
+            `💬 *Detalhes:* ${data.message || '-'}\n\n` +
+            `✨ _Solicitação enviada pelo site!_`
+        );
+    }
+
+    function sendBookingToSheet(data) {
+        const endpoint = 'https://script.google.com/macros/library/d/1D5dW2LY4GvLpeaQ3SSLPmCZkT9xLpmyUCgXfMOaJ5xrV-79rd7K9AqFF/2';
+        fetch(endpoint, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+    }
+
+    (function() {
+        const form = document.getElementById('booking-form');
+        const btnOpenModal = document.getElementById('open-modal');
+        const modal = document.getElementById('modal-destinatario');
+        const btnYuri = document.getElementById('send-yuri');
+        const btnDavi = document.getElementById('send-davi');
+        const btnClose = document.getElementById('close-modal');
+        const successMsg = document.getElementById('form-success');
+
+        function getFormData() {
+            return {
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                service: form.service.value,
+                date: form.date.value,
+                message: form.message.value
+            };
+        }
+
+        function handleSend(destinatario, numero) {
+            const data = getFormData();
+            if (!data.name || !data.email || !data.phone || !data.service) {
+                alert('Preencha todos os campos obrigatórios!');
+                return;
+            }
+            data.destinatario = destinatario;
+            data.dataEnvio = new Date().toLocaleString('pt-BR');
+            sendBookingToSheet(data);
+            const texto = buildBookingMessage(data);
+            window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+            successMsg.classList.remove('hidden');
+            setTimeout(() => successMsg.classList.add('hidden'), 6000);
+            form.reset();
+            modal.classList.add('hidden');
+        }
+
+        btnOpenModal.addEventListener('click', function() {
+            modal.classList.remove('hidden');
+        });
+        btnClose.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+        btnYuri.addEventListener('click', function() {
+            handleSend('Yuri Silva', '5534988302860');
+        });
+        btnDavi.addEventListener('click', function() {
+            handleSend('Davi Gomes', '5534992079251');
+        });
+    })();
+    </script>
 
     <!-- Rodapé -->
     <footer class="py-10 px-6 bg-black bg-opacity-90">
         <div class="container mx-auto text-center">
+            <img src="img/logo nome.png" alt="Logo MobileVision Nome" class="mx-auto mb-4 max-h-32 object-contain">
             <p class="text-gray-400 text-sm">
                 &copy; 2025 MobileVision. Todos os direitos reservados.
             </p>
             <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="social-icon text-gray-400 hover:text-red-500 transition">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+                
                 <a href="https://www.instagram.com/mobilevision4/" class="social-icon text-gray-400 hover:text-red-500 transition">
                     <i class="fab fa-instagram"></i>
                 </a>
