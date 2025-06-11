@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotografia & Videomaker Mobile</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -561,7 +562,7 @@
                 <div class="md:w-1/2 relative mt-10 md:mt-0">
                     <div class="relative max-w-md mx-auto grid grid-cols-2 gap-6">
                         <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/S22_nightography-e1645799937603.jpg" alt="Samsung S22 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <img src="img/s22 uti.png" alt="Samsung S22 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
                             <h4 class="font-bold text-white">S22 Ultra</h4>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center">
@@ -569,7 +570,7 @@
                             <h4 class="font-bold text-white">Nikon</h4>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/gimbal.png" alt="Gimbal" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <img src="img/Gimbal.png" alt="Gimbal" class="h-32 object-contain mb-4 rounded-xl shadow-md">
                             <h4 class="font-bold text-white">Gimbal</h4>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center">
@@ -588,6 +589,7 @@
             <div class="max-w-4xl mx-auto glass-card overflow-hidden">
                 <div class="md:flex">
                     <div class="md:w-1/2 bg-gradient-to-br from-purple-900 via-purple-800 to-black bg-opacity-90 p-10 flex flex-col justify-center">
+                        <img src="img/logo.png" alt="Logo MobileVision" class="mx-auto mb-10 h-32 w-32 object-contain rounded-full shadow-md bg-white bg-opacity-10 mt-2">
                         <h2 class="text-3xl font-bold mb-6 gradient-text-animated">Agende Sua Sessão</h2>
                         <p class="mb-6 opacity-90 text-gray-200">Preencha o formulário ao lado e entraremos em contato para confirmar os detalhes do seu projeto fotográfico ou de videografia.</p>
                         <div class="flex items-center mb-4 text-gray-200">
@@ -663,15 +665,27 @@
     <script>
     // Função para montar mensagem personalizada
     function buildBookingMessage(data) {
+        // Formata a data para dd/mm/aaaa
+        let dataFormatada = data.date;
+        if (dataFormatada) {
+            const partes = dataFormatada.split('-');
+            if (partes.length === 3) {
+                dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+            }
+        } else {
+            dataFormatada = 'A combinar';
+        }
         return encodeURIComponent(
-            `📸 *Novo Agendamento MobileVision!*\n\n` +
-            `👤 *Nome:* ${data.name}\n` +
-            `✉️ *E-mail:* ${data.email}\n` +
-            `📱 *Telefone:* ${data.phone}\n` +
-            `🗓️ *Data:* ${data.date || '-'}\n` +
-            `🎯 *Serviço:* ${data.service}\n` +
-            `💬 *Detalhes:* ${data.message || '-'}\n\n` +
-            `✨ _Solicitação enviada pelo site!_`
+            `✨ *Agendamento MobileVision* ✨\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `👤 *Nome:* _${data.name}_\n` +
+            `✉️ *E-mail:* _${data.email}_\n` +
+            `📱 *Telefone:* _${data.phone}_\n` +
+            `🗓️ *Data:* _${dataFormatada}_\n` +
+            `🎯 *Serviço:* _${data.service}_\n` +
+            (data.message ? `💬 *Detalhes:* _${data.message}_\n` : '') +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `📸 _Solicitação enviada pelo site em ${new Date().toLocaleDateString('pt-BR')}!_`
         );
     }
 
