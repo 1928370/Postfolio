@@ -626,7 +626,7 @@
     }
 
     function sendBookingToSheet(data) {
-        const endpoint = 'https://script.google.com/macros/library/d/1D5dW2LY4GvLpeaQ3SSLPmCZkT9xLpmyUCgXfMOaJ5xrV-79rd7K9AqFF/2';
+        const endpoint = 'https://script.google.com/macros/s/AKfycbxOpG7ITmTMNHluRxiAXuDw5VZYjAc-zLNg-birE4edHwAQkufN1B9OCOkNxN3RZO7L/exec';
         fetch(endpoint, {
             method: 'POST',
             mode: 'no-cors',
@@ -663,6 +663,7 @@
             }
             data.destinatario = destinatario;
             data.dataEnvio = new Date().toLocaleString('pt-BR');
+            data.sheetName = 'Eventos'; // Nome da aba da planilha Google
             sendBookingToSheet(data);
             const texto = buildBookingMessage(data);
             window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
