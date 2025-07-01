@@ -1,209 +1,248 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotografia & Videomaker Mobile</title>
+    <title>LFT MMA - Academia de Artes Marciais</title>
     <link rel="icon" type="image/png" href="img/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-    :root {
-        --dark-blue: #0a192f;
-        --darker-blue: #020c1b;
-        --dark-red: #8b0000;
-        --accent-red: #d90429;
-        --glass-bg: rgba(20, 30, 48, 0.65);
-        --glass-border: rgba(255,255,255,0.18);
-        --neon-pink: #ff4dff;
-        --neon-blue: #4facfe;
-        --neon-purple: #a259ff;
-    }
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(120deg, #0a192f 0%, #1a0033 100%);
-        color: white;
-        overflow-x: hidden;
-    }
-    .gradient-bg {
-        background: linear-gradient(135deg, #0a192f 0%, #1a0033 50%, #8b0000 100%);
-    }
-    .gradient-text {
-        background: linear-gradient(90deg, #4facfe 0%, #a259ff 50%, #ff4dff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 2px 8px #a259ff88);
-    }
-    .nav-link {
-        position: relative;
-        transition: color 0.3s;
-    }
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background: linear-gradient(90deg, #ff4dff, #4facfe);
-        transition: width 0.3s;
-        border-radius: 2px;
-    }
-    .nav-link:hover, .nav-link:focus {
-        color: #ff4dff;
-        text-shadow: 0 0 8px #ff4dff99;
-    }
-    .nav-link:hover::after, .nav-link:focus::after {
-        width: 100%;
-    }
-    header {
-        background: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 4px 32px 0 #a259ff33;
-        backdrop-filter: blur(12px);
-        border-bottom: 1.5px solid #a259ff33;
-    }
-    .btn-primary {
-        background: linear-gradient(90deg, #a259ff 0%, #4facfe 100%);
-        border: none;
-        box-shadow: 0 0 16px 2px #a259ff55, 0 0 32px 8px #4facfe33;
-        letter-spacing: 1px;
-        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-    }
-    .btn-primary:hover, .btn-primary:focus {
-        background: linear-gradient(90deg, #ff4dff 0%, #4facfe 100%);
-        box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
-        transform: scale(1.05);
-    }
-    .glass-card {
-        background: var(--glass-bg);
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        backdrop-filter: blur(12px);
-        border-radius: 24px;
-        border: 1.5px solid var(--glass-border);
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .glass-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #a259ff;
-    }
-    .gradient-text-animated {
-        background: linear-gradient(270deg, #4facfe, #a259ff, #ff4dff, #d90429, #4facfe);
-        background-size: 1000% 1000%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: gradientMove 8s ease infinite;
-        filter: drop-shadow(0 2px 8px #a259ff88);
-    }
-    @keyframes gradientMove {
-        0% {background-position:0% 50%}
-        50% {background-position:100% 50%}
-        100% {background-position:0% 50%}
-    }
-    input, textarea, select {
-        background: rgba(30, 30, 50, 0.95)!important;
-        border: 1.5px solid #a259ff!important;
-        color: #fff!important;
-        box-shadow: 0 0 0 0 #a259ff00;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    input:focus, textarea:focus, select:focus {
-        box-shadow: 0 0 0 2px #ff4dff, 0 0 12px 2px #4facfe99;
-        border-color: #ff4dff;
-        outline: none;
-    }
-    .portfolio-item {
-        background: var(--glass-bg);
-        border: 1.5px solid #a259ff33;
-        box-shadow: 0 4px 24px 0 #4facfe22;
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .portfolio-item:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .business-card {
-        background: var(--glass-bg);
-        border-radius: 24px;
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        border: 1.5px solid #a259ff55;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    .business-card:hover {
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .mobile-showcase img {
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        border: 2px solid #a259ff;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    .mobile-showcase img:hover {
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .social-icon {
-        transition: all 0.3s;
-        filter: drop-shadow(0 2px 8px #a259ff55);
-    }
-    .social-icon:hover {
-        color: #ff4dff!important;
-        transform: translateY(-3px) scale(1.1);
-        filter: drop-shadow(0 2px 16px #ff4dff99);
-    }
-    footer {
-        background: rgba(10, 25, 47, 0.95);
-        box-shadow: 0 -4px 32px 0 #a259ff33;
-        border-top: 1.5px solid #a259ff33;
-        backdrop-filter: blur(8px);
-    }
-    footer img {
-        filter: drop-shadow(0 4px 24px #a259ff99);
-    }
-    /* Fade-in animado para cada seção ao rolar */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
-    }
-    .fade-in.visible {
-        opacity: 1;
-        transform: none;
-    }
-    /* Pequenos ajustes de espaçamento e responsividade */
-    @media (max-width: 768px) {
-        .glass-card, .portfolio-item, .business-card {
-            border-radius: 16px;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
         }
-        .mobile-showcase img {
-            border-radius: 16px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #18181b 0%, #23272f 100%);
+            color: #f3f4f6;
         }
-        .gradient-text, .gradient-text-animated {
-            font-size: 1.5rem;
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            background: url('img/local.png') no-repeat center center/cover;
         }
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(24,24,27,0.92) 60%, rgba(229,62,62,0.32) 100%);
+            z-index: 1;
+        }
+        .hero > .container {
+            position: relative;
+            z-index: 2;
+        }
+        .nav-link {
+            position: relative;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #e53e3e, #fbbf24);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .class-card, .bg-gray-800, .bg-white, .rounded-2xl, .rounded-xl {
+            background: linear-gradient(135deg, #23272f 80%, #18181b 100%);
+            border: 2px solid #e53e3e33;
+            box-shadow: 0 8px 32px 0 #000a, 0 1.5px 0 #e53e3e44;
+        }
+        .class-card:hover, .bg-gray-800:hover {
+            border-color: #e53e3e;
+            box-shadow: 0 0 24px 2px #e53e3e55, 0 8px 32px 0 #000a;
+            transform: scale(1.03);
+        }
+        .class-card h3, .text-2xl, .text-3xl, .text-4xl, .font-bold {
+            text-shadow: 0 2px 12px #000a, 0 1px 0 #e53e3e44;
+        }
+        .class-card ul li i, .fa-check {
+            color: #fbbf24 !important;
+            text-shadow: 0 0 6px #e53e3e99;
+        }
+        .bg-gradient-to-b {
+            background: linear-gradient(135deg, #23272f 60%, #e53e3e 100%) !important;
+        }
+        .bg-gradient-to-b.from-blue-700 {
+            background: linear-gradient(135deg, #23272f 60%, #2563eb 100%) !important;
+        }
+        .bg-gradient-to-b.from-yellow-700 {
+            background: linear-gradient(135deg, #23272f 60%, #fbbf24 100%) !important;
+        }
+        .bg-gradient-to-b.from-pink-700 {
+            background: linear-gradient(135deg, #23272f 60%, #ec4899 100%) !important;
+        }
+        .rounded-full, .p-4 {
+            box-shadow: 0 0 16px 0 #e53e3e33;
+        }
+        .bg-white, .bg-gray-100 {
+            background: #18181b !important;
+        }
+        .text-gray-800, .text-gray-900 {
+            color: #fbbf24 !important;
+        }
+        .text-gray-600, .text-gray-400, .text-gray-700 {
+            color: #e5e7eb !important;
+        }
+        .bg-red-600 {
+            background: linear-gradient(90deg, #e53e3e 60%, #fbbf24 100%) !important;
+        }
+        .bg-blue-600 {
+            background: linear-gradient(90deg, #2563eb 60%, #fbbf24 100%) !important;
+        }
+        .bg-yellow-600 {
+            background: linear-gradient(90deg, #fbbf24 60%, #e53e3e 100%) !important;
+        }
+        .bg-pink-500 {
+            background: linear-gradient(90deg, #ec4899 60%, #fbbf24 100%) !important;
+        }
+        .hover\:bg-red-700:hover {
+            background: #b91c1c !important;
+        }
+        .hover\:bg-blue-700:hover {
+            background: #1e40af !important;
+        }
+        .hover\:bg-yellow-700:hover {
+            background: #b45309 !important;
+        }
+        .hover\:bg-pink-700:hover {
+            background: #be185d !important;
+        }
+        .border-red-600 {
+            border-color: #e53e3e !important;
+        }
+        .shadow-xl, .shadow-lg {
+            box-shadow: 0 8px 32px 0 #000a, 0 1.5px 0 #e53e3e44 !important;
+        }
+        .btn-lutador {
+            background: linear-gradient(90deg, #e53e3e 60%, #fbbf24 100%);
+            color: #18181b;
+            font-weight: bold;
+            border-radius: 9999px;
+            box-shadow: 0 0 16px 0 #e53e3e55;
+            padding: 0.75rem 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+        .btn-lutador:hover {
+            background: linear-gradient(90deg, #fbbf24 60%, #e53e3e 100%);
+            color: #fff;
+            box-shadow: 0 0 32px 0 #e53e3e99;
+            transform: scale(1.05);
+        }
+        .footer {
+            background: linear-gradient(90deg, #18181b 60%, #e53e3e 100%);
+            color: #fbbf24;
+        }
+        .footer a {
+            color: #fbbf24;
+        }
+        .footer a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #e53e3e;
+        }
+        /* Títulos com efeito de "luz" */
+        h1, h2, h3, h4, h5, h6 {
+            text-shadow: 0 2px 12px #e53e3e99, 0 1px 0 #000a;
+        }
+        /* Efeito de "pulse" nos ícones principais */
+        .fa-fist-raised, .fa-hand-rock, .fa-user-ninja, .fa-child, .fa-clock {
+            animation: pulse 2s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 0 #e53e3e); }
+            100% { filter: drop-shadow(0 0 16px #e53e3e); }
+        }
+        /* Responsividade extra para fundo escuro */
+        @media (max-width: 640px) {
+            .container, .px-4 {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+            .text-center, .text-left, .text-right {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            h1, h2, h3, h4, h5, h6, p, span, a, li, label, input, select, textarea, button {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            .class-card .p-8, .class-card .p-6 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            .class-card h3, .class-card p, .class-card ul, .class-card a {
+                word-break: break-word;
+                overflow-wrap: break-word;
+            }
+            .rounded-lg, .shadow-lg, .overflow-hidden {
+                border-radius: 0.75rem !important;
+            }
+            .h-48 {
+                height: 12rem !important;
+            }
+            .min-h-screen, .hero {
+                min-height: 80vh !important;
+            }
+            .text-4xl {
+                font-size: 2rem !important;
+            }
+            .text-3xl {
+                font-size: 1.5rem !important;
+            }
+            .text-2xl {
+                font-size: 1.25rem !important;
+            }
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            .max-w-3xl, .max-w-2xl, .max-w-md {
+                max-width: 100vw !important;
+            }
+        }
+        input, select, textarea {
+            color: #18181b !important;
+        }
     </style>
 </head>
-<body class="gradient-bg min-h-screen">
-    <!-- Cabeçalho -->
-    <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
-        <div class="container mx-auto px-6 py-4">
+<body class="bg-gray-100">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" style="position:fixed;z-index:9999;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#18181b 0%,#23272f 100%);transition:opacity 0.8s;">
+        <img src="img/logo.png" alt="LFT MMA Logo" style="width:40vw;max-width:340px;min-width:180px;filter:drop-shadow(0 0 40px #e53e3e88);">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <img src="img/logo.png" alt="Logo MobileVision" class="h-10 w-10 object-contain rounded-full shadow-md bg-white bg-opacity-10">
-                    <a href="#" class="text-2xl font-bold gradient-text">MobileVision</a>
+                <div class="flex items-center space-x-4">
+                    <img src="img/logo.png" alt="LFT MMA Logo" class="h-12">
+                    <span class="text-xl font-bold hidden md:block">LFT MMA</span>
                 </div>
                 
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
-                    <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
-                    <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
-                    <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
-                    <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
-                </nav>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-red-500 transition duration-300">Início</a>
+                    <a href="#about" class="nav-link text-white hover:text-red-500 transition duration-300">Sobre</a>
+                    <a href="#classes" class="nav-link text-white hover:text-red-500 transition duration-300">Modalidades</a>
+                    <a href="#trainers" class="nav-link text-white hover:text-red-500 transition duration-300">Instrutores</a>
+                    <a href="#contact" class="nav-link text-white hover:text-red-500 transition duration-300">Contato</a>
+                </div>
                 
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-white focus:outline-none">
@@ -211,66 +250,80 @@
                     </button>
                 </div>
             </div>
-        </div>
-        
-        <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 py-4 px-6">
-            <div class="flex flex-col space-y-4">
-                <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
-                <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
-                <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
-                <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
-                <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-white hover:text-red-500 transition duration-300">Início</a>
+                <a href="#about" class="block py-2 text-white hover:text-red-500 transition duration-300">Sobre</a>
+                <a href="#classes" class="block py-2 text-white hover:text-red-500 transition duration-300">Modalidades</a>
+                <a href="#trainers" class="block py-2 text-white hover:text-red-500 transition duration-300">Instrutor</a>
+                <a href="#contact" class="block py-2 text-white hover:text-red-500 transition duration-300">Contato</a>
             </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 px-6">
-        <div class="container mx-auto flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    <span class="gradient-text">Capturando</span> momentos <br>
-                    <span class="text-white">com</span> <span class="gradient-text">excelência</span>
-                </h1>
-                <p class="text-lg text-gray-300 mb-8">
-                    Transformando visões em realidade através da fotografia e videografia mobile. 
-                    Cada clique conta uma história, cada frame é uma emoção.
-                </p>
-            
-                <div class="flex space-x-4">
-                    <a href="https://www.instagram.com/mobilevision4/" target="_blank" rel="noopener" class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
-                        Instagram
-                    </a>
-                    <a href="#booking" class="border border-red-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-500 hover:bg-opacity-20 transition">
-                        Contato
-                    </a>
-                </div>
-                
-                <!-- Parceria -->
-                <div class="mt-8">
-                    <div class="mb-1 ml-1 text-xs font-semibold text-gray-300 tracking-widest uppercase">Parceria</div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://www.instagram.com/alegriafest_/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-yellow-300 via-pink-300 to-yellow-400 text-gray-900 shadow hover:from-yellow-400 hover:to-pink-400 transition border-2 border-white/30 flex items-center gap-2" title="Parceria: Alegria Fest">
-                            <img src="img/alegria.png" alt="Alegria Fest" class="w-6 h-6 rounded-full object-cover border border-white/40"> 
-                            <span>🤝 Alegria Fest</span>
-                        </a>
-                        <a href="https://www.instagram.com/locomotivadaalegriaofc/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-green-300 via-blue-200 to-green-400 text-gray-900 shadow hover:from-green-400 hover:to-blue-300 transition border-2 border-white/30 flex items-center gap-2" title="Parceria: Locomotiva da Alegria">
-                            <img src="img/locomotiva.png" alt="Locomotiva da Alegria" class="w-6 h-6 rounded-full object-cover border border-white/40"> 
-                            <span>🤝 Locomotiva da Alegria</span>
-                        </a>
-                    </div>
-                </div>
+    <section id="home" class="hero min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <!-- Marca d'água do local removida, agora é background principal -->
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <img src="img/logo.png" alt="LFT MMA Logo" class="mx-auto h-32 mb-8">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">LFT MMA</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-8">Excelência em Artes Marciais</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10">Transformando vidas através do Muay Thai, Boxe e Jiu-Jitsu. Desenvolva disciplina, condicionamento físico e autodefesa em um ambiente profissional.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="btn-lutador">Agende uma Aula Experimental</a>
+                <a href="#classes" class="btn-lutador" style="background:transparent;border:2px solid #fbbf24;color:#fbbf24;">Conheça Nossas Modalidades</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sobre a LFT MMA</h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Nossa academia é dedicada ao ensino de artes marciais com excelência técnica e profissionalismo.</p>
             </div>
             
-            <div class="md:w-1/2 flex justify-center">
-                <div class="mobile-showcase p-4 max-w-xs">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                             alt="Fotografia mobile" 
-                             class="rounded-lg border-2 border-gray-700 shadow-xl">
-                        <div class="absolute -bottom-5 -right-5 bg-red-600 text-white p-2 rounded-full shadow-lg">
-                            <i class="fas fa-mobile-alt text-2xl"></i>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="img/Foto1.png" alt="Academia LFT MMA" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Nossa Filosofia</h3>
+                    <p class="text-gray-600 mb-6">Na LFT MMA, acreditamos que as artes marciais vão além da luta. Elas são um caminho para o desenvolvimento pessoal, disciplina mental e condicionamento físico excepcional.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-medal text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Excelência Técnica</h4>
+                                <p class="text-gray-600">Métodos de ensino comprovados e atualizados para todas as modalidades.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-heartbeat text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Condicionamento Físico</h4>
+                                <p class="text-gray-600">Programas de treino que melhoram força, resistência e flexibilidade.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-red-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-2">Autodefesa</h4>
+                                <p class="text-gray-600">Técnicas eficientes para proteção pessoal em situações reais.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -278,179 +331,365 @@
         </div>
     </section>
 
-    <!-- Sobre -->
-    <section id="about" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
-        <div class="container mx-auto">
+    <!-- Classes Section -->
+    <section id="classes" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="gradient-text">Sobre</span> <span class="text-white">Mim</span>
-                </h2>
-                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossas Modalidades</h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Oferecemos treinamento especializado em três artes marciais fundamentais.</p>
             </div>
             
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="relative flex flex-col items-center gap-16 md:gap-16 md:flex-col">
-                        <div class="relative mb-8 md:mb-0">
-                            <img src="img/eu.jpg" alt="Fotógrafo Yuri Silva" class="rounded-full w-64 h-64 object-cover border-4 border-red-500 shadow-lg">
-                            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
-                                <i class="fas fa-camera mr-2"></i> Yuri Silva
-                            </div>
-                        </div>
-                        <div class="relative">
-                            <img src="img/Davi.png" alt="Fotógrafo Davi Gomes" class="rounded-full w-64 h-64 object-cover border-4 border-blue-500 shadow-lg">
-                            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white px-4 py-2 rounded-full shadow-lg">
-                                <i class="fas fa-camera mr-2"></i> Davi Gomes
-                            </div>
-                        </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Muay Thai Card -->
+                <div class="class-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                        <img src="img/muay thai.jpeg" alt="Muay Thai" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Muay Thai</h3>
+                        <p class="text-gray-600 mb-6">A arte das oito armas. Desenvolva técnicas de socos, chutes, cotoveladas e joelhadas com nossa metodologia tailandesa.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Técnicas tradicionais</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Condicionamento físico intenso</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-red-600 mr-2"></i>
+                                <span>Treino de clinch</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Saiba Mais</a>
                     </div>
                 </div>
                 
-                <div class="md:w-2/3 md:pl-12">
-                    <div class="mb-10">
-                        <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva</h3>
-                        <p class="text-gray-300 mb-6">
-                            Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S22 Ultra para explorar e aprender cada vez mais sobre esse universo criativo.
-                        </p>
+                <!-- Boxing Card -->
+                <div class="class-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                        <img src="img/boxe.jpg" alt="Boxe" class="h-full w-full object-cover">
                     </div>
-                    <div class="mb-10">
-                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Olá, eu sou Davi Gomes</h3>
-                        <p class="text-gray-300 mb-6">
-                            Entusiasta da fotografia, busco eternizar emoções e histórias através das lentes do meu smartphone. Acredito que cada imagem tem o poder de inspirar e conectar pessoas, e estou sempre em busca de novos olhares e experiências para compartilhar.
-                        </p>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Boxe</h3>
+                        <p class="text-gray-600 mb-6">A nobre arte do boxe. Aprenda footwork, esquivas e combinações de socos com treinadores experientes.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-2"></i>
+                                <span>Técnica de socos</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-2"></i>
+                                <span>Defesa pessoal</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-blue-600 mr-2"></i>
+                                <span>Condicionamento cardiovascular</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Saiba Mais</a>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border-l-4 border-red-500">
-                            <h4 class="font-bold text-white mb-2"><i class="fas fa-bolt text-red-500 mr-2"></i> Tecnologia Mobile</h4>
-                            <p class="text-gray-300 text-sm">
-                                Utilizo os mais avançados smartphones e acessórios para garantir qualidade profissional em cada captura.
-                            </p>
+                </div>
+                
+                <!-- Jiu-Jitsu Card -->
+                <div class="class-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center overflow-hidden">
+                        <img src="img/jiu jitsu.jpg" alt="Jiu-Jitsu" class="h-full w-auto object-contain">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Jiu-Jitsu</h3>
+                        <p class="text-gray-600 mb-6">A arte suave. Domine técnicas de finalização, quedas e controle no solo com nosso programa estruturado.</p>
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-yellow-600 mr-2"></i>
+                                <span>Posicionamento e alavancas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-yellow-600 mr-2"></i>
+                                <span>Finalizações e defesas</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-yellow-600 mr-2"></i>
+                                <span>Treino com e sem kimono</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full transition duration-300">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Nossos Instrutores</h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Profissionais qualificados com vasta experiência em competições e ensino.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-1 gap-8">
+                <!-- Trainer Leandro -->
+                <div class="flex justify-center">
+                    <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center w-full md:w-1/2">
+                        <img src="img/leandrin.png" alt="Mestre Leandro - LFT MMA" class="h-56 w-56 object-contain mb-6" style="background: none;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Leandro</h3>
+                        <p class="text-red-600 font-semibold mb-3">Mestre e Fundador da LFT MMA</p>
+                        <p class="text-gray-600 text-center">Especialista em Muay Thai, Boxe e Jiu-Jitsu. Referência em formação de atletas e desenvolvimento pessoal através das artes marciais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+   <section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+            <!-- Marca d'água da logo -->
+            <img src="img/logo.png" alt="Marca d'água LFT MMA" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 blur-sm select-none pointer-events-none w-[60vw] max-w-2xl z-0" style="filter: drop-shadow(0 0 40px #0008);">
+            <div class="container mx-auto px-2 sm:px-4 relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Horários das Aulas</h2>
+                    <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">Confira nossos horários e encontre a turma ideal para você.</p>
+                </div>
+                <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden max-w-5xl mx-auto p-6 md:p-10 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <!-- Muay Thai -->
+                        <div class="bg-gradient-to-b from-red-700 via-red-600 to-red-500 rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <div class="bg-white p-4 rounded-full mb-4 shadow-lg">
+                                <i class="fas fa-fist-raised text-red-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Muay Thai</h3>
+                            <div class="w-12 h-1 bg-white mb-4"></div>
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Segunda e Quarta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 6h - 7h | 8h - 9h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 16h - 17h</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Terça e Quinta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 7h - 8h | 9h - 10h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 16h - 17h | 17h - 18h | 19hh - 20h</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Sexta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 6h - 7h | 8h - 9h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 16h - 17h</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-gray-900 bg-opacity-50 p-4 rounded-lg border-l-4 border-blue-500">
-                            <h4 class="font-bold text-white mb-2"><i class="fas fa-paint-brush text-blue-400 mr-2"></i> Edição Criativa</h4>
-                            <p class="text-gray-300 text-sm">
-                                Processo cada imagem e vídeo com técnicas avançadas de edição para realçar a essência de cada momento.
-                            </p>
+                        <!-- Boxe -->
+                        <div class="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-500 rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <div class="bg-white p-4 rounded-full mb-4 shadow-lg">
+                                <i class="fas fa-hand-rock text-blue-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Boxe</h3>
+                            <div class="w-12 h-1 bg-white mb-4"></div>
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Segunda e Quarta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 7h - 8h | 9h - 10h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 17h - 18h | 19h - 20h</span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Terça e Quinta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 6h - 7h | 8h - 9h</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Sexta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 7h - 8h | 9h - 10h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 17h - 18h | 19h - 20h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Jiu-Jitsu -->
+                        <div class="bg-gradient-to-b from-yellow-700 via-yellow-600 to-yellow-500 rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <div class="bg-white p-4 rounded-full mb-4 shadow-lg">
+                                <i class="fas fa-user-ninja text-yellow-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Jiu-Jitsu</h3>
+                            <div class="w-12 h-1 bg-white mb-4"></div>
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Segunda a Sexta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-blue-200">Noite:</span> 20h - 21h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kids -->
+                        <div class="bg-gradient-to-b from-pink-700 via-pink-500 to-pink-400 rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <div class="bg-white p-4 rounded-full mb-4 shadow-lg">
+                                <i class="fas fa-child text-pink-500 text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Kids</h3>
+                            <div class="w-12 h-1 bg-white mb-4"></div>
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <span class="block text-white font-semibold mb-1"><i class="fas fa-calendar-alt mr-1"></i> Segunda a Sexta</span>
+                                    <div class="flex flex-col text-sm">
+                                        <span><span class="font-bold text-yellow-200">Manhã:</span> 10h - 11h</span>
+                                        <span><span class="font-bold text-blue-200">Tarde:</span> 18h - 19h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Legenda -->
+                    <div class="mt-8 flex flex-col md:flex-row justify-center items-center gap-6 text-sm">
+                        <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-yellow-200"></span> <span>Manhã</span></div>
+                        <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-blue-200"></span> <span>Tarde</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-calendar-alt text-white"></i> <span>Horários por modalidade</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Horários de Funcionamento -->
+    <section class="py-12 bg-gray-100 relative overflow-hidden">
+        <!-- Marca d'água da logo -->
+        <img src="img/logo.png" alt="Marca d'água LFT MMA" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10 blur-sm select-none pointer-events-none w-[60vw] max-w-2xl z-0" style="filter: drop-shadow(0 0 40px #0004);">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-600 p-3 rounded-full mr-3">
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800">Horário de Funcionamento</h3>
+                </div>
+                <div class="w-16 h-1 bg-red-600 mb-6"></div>
+                <ul class="text-gray-700 text-lg space-y-2 text-center">
+                    <li><span class="font-bold text-gray-900">Segunda a Sexta:</span> 07:30 às 10:30h e das 16h às 21h</li>
+                    <li><span class="font-bold text-gray-900">Sábado:</span> Fechado</li>
+                    <li><span class="font-bold text-gray-900">Domingo:</span> Fechado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Entre em Contato</h2>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Agende uma aula experimental ou tire suas dúvidas sobre nossos cursos.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Envie uma Mensagem</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        
+                        <div>
+                            <label for="interest" class="block text-gray-700 font-medium mb-2">Interesse</label>
+                            <select id="interest" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                                <option value="">Selecione uma modalidade</option>
+                                <option value="muaythai">Muay Thai</option>
+                                <option value="boxe">Boxe</option>
+                                <option value="jiujitsu">Jiu-Jitsu</option>
+                                <option value="all">Todas as modalidades</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Mensagem</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Enviar Mensagem</button>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2 space-y-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Endereço</h4>
+                                    <p class="text-gray-600">Av. Minas Gerais n° 2292<br>Bairro Centro<br>Araguari-MG</p>
+                                </div>
+                            </div>
+                        
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Telefone</h4>
+                                    <p class="text-gray-600">(34) 98420-6130</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">E-mail</h4>
+                                    <p class="text-gray-600">Ir.lft16@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Horário de Funcionamento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 07:30 às 10:30h e das 16h às 21h<br>Sábado: Fechado<br>Domingo: Fechado</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="flex flex-wrap gap-4">
-                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
-                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Fotografia</span>
-                        </div>
-                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
-                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Videografia</span>
-                        </div>
-                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
-                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Edição</span>
-                        </div>
-                        <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
-                            <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Pós-produção</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfólio -->
-    <section id="portfolio" class="py-20 px-6 fade-in">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="text-white">Meu</span> <span class="gradient-text">Portfólio</span>
-                </h2>
-                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
-                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
-                    Veja todas as fotos e vídeos do nosso trabalho no Google Drive!
-                </p>
-            </div>
-            <div class="flex justify-center items-center">
-                <a href="https://drive.google.com/drive/folders/1pDnA4cFdPzpJ4NvqpQ7arTiundVfdgb_?usp=drive_link" target="_blank" rel="noopener" 
-                   class="relative group inline-block px-12 py-5 rounded-full font-extrabold text-lg text-white bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 shadow-2xl border-4 border-white/20 transition-all duration-300 hover:scale-110 hover:from-pink-500 hover:to-yellow-400 hover:shadow-pink-500/40 focus:outline-none focus:ring-4 focus:ring-pink-400 animate-pulse">
-                    <span class="flex items-center gap-3">
-                        <i class="fas fa-folder-open text-2xl animate-bounce"></i>
-                        Fotos Google Drive
-                        <span class="absolute -top-3 -right-6 bg-pink-600 text-white text-xs px-3 py-1 rounded-full shadow-lg animate-pulse">NOVO!</span>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Serviços -->
-    <section id="services" class="py-20 px-6 fade-in">
-        <div class="container mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text-animated">Nossos <span class="text-purple-400">Serviços</span></h2>
-                <p class="max-w-2xl mx-auto text-gray-300">Utilizamos tecnologia móvel de ponta combinada com equipamentos profissionais para entregar resultados excepcionais.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Serviço 1 -->
-                <div class="glass-card p-8 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-purple-900 bg-opacity-60 rounded-full flex items-center justify-center mb-5 shadow-lg">
-                        <i class="fas fa-camera-retro text-purple-300 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Fotografia Profissional</h3>
-                    <p class="text-gray-300 mb-4">Imagens de alta qualidade capturadas com Samsung S22 Ultra e equipamentos complementares para realçar cada detalhe.</p>
-                    <ul class="space-y-2 text-gray-200">
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Retratos</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Eventos</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Produtos</li>
-                    </ul>
-                </div>
-                <!-- Serviço 2 -->
-                <div class="glass-card p-8 flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-blue-900 bg-opacity-60 rounded-full flex items-center justify-center mb-5 shadow-lg">
-                        <i class="fas fa-video text-blue-300 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Videografia Premium</h3>
-                    <p class="text-gray-300 mb-4">Gravações estáveis e cinegrip com uso de gimbal profissional, capturando movimentos suaves e imagens nítidas.</p>
-                    <ul class="space-y-2 text-gray-200">
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Eventos</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Clipes</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Vídeos promocionais</li>
-                    </ul>
-                </div>
-                <!-- Serviço 3 -->
-                <div class="glass-card p-8 flex flex-col items-center text-center" id="edicao-premium-card">
-                    <div class="w-16 h-16 bg-yellow-400 bg-opacity-30 rounded-full flex items-center justify-center mb-5 shadow-lg">
-                        <i class="fas fa-paint-brush text-yellow-300 text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Edição Profissional</h3>
-                    <p class="text-gray-300 mb-4">Processamento digital avançado em notebook especializado, garantindo cores vibrantes e ajustes precisos.</p>
-                    <ul class="space-y-2 text-gray-200">
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Fotos (Lightroom, Photoshop)</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Vídeos (Premiere, DaVinci)</li>
-                        <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Efeitos especiais</li>
-                    </ul>
-                    <button id="btn-edicao-premium" class="mt-6 px-5 py-2 rounded-full bg-gradient-to-r from-yellow-400 via-pink-400 to-yellow-300 text-gray-900 font-bold text-sm shadow hover:from-yellow-500 hover:to-pink-500 transition">Ver Softwares Utilizados</button>
-                    <div id="softwares-edicao" class="hidden mt-6 w-full">
-                        <div class="text-left mb-2">
-                            <span class="font-bold text-yellow-300 text-sm">Vídeo</span>
-                        </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex flex-col items-center">
-                                <img src="img/capcut.png" alt="Capcut" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Capcut</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <img src="img/primiere.jpg" alt="Premiere" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Premiere</span>
-                            </div>
-                        </div>
-                        <div class="text-left mb-2">
-                            <span class="font-bold text-yellow-300 text-sm">Fotos</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex flex-col items-center">
-                                <img src="img/adobe-lightroom.png" alt="Adobe Lightroom" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Lightroom</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <img src="img/photoroom.png" alt="Photoroom" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Photoroom</span>
-                            </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Siga-nos nas Redes Sociais</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/lft.academy?mibextid=ZbWKwL" class="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-facebook-f text-white"></i>
+                            </a>
+                            <a href="https://www.instagram.com/lft.mma/" class="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <a href="https://api.whatsapp.com/send/?phone=553484206130&text&type=phone_number&app_absent=0" class="bg-gray-800 hover:bg-red-600 p-3 rounded-full transition duration-300">
+                                <i class="fab fa-whatsapp text-white"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -458,312 +697,154 @@
         </div>
     </section>
 
-    <!-- Seção Tecnologia Premium -->
-    <section class="py-20 px-6 bg-black bg-opacity-30 fade-in">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text-animated">Tecnologia <span class="text-purple-400">Premium</span></h2>
-                    <p class="text-gray-300 mb-8">Utilizamos equipamentos de última geração combinados com técnicas profissionais para garantir a melhor qualidade:</p>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-purple-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
-                                <i class="fas fa-mobile-alt text-purple-300 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-white mb-1">Samsung Galaxy S22 Ultra</h4>
-                                <p class="text-gray-300">Câmera principal de 108MP, zoom óptico 10x e gravação 8K para imagens incríveis.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-blue-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
-                                <i class="fas fa-camera text-blue-300 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-white mb-1">Câmera Nikon (opcional)</h4>
-                                <p class="text-gray-300">Para situações que demandam ainda mais qualidade e controle manual.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 bg-green-900 bg-opacity-60 p-3 rounded-lg mr-4 shadow-lg">
-                                <i class="fas fa-sliders-h text-green-300 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-white mb-1">Gimbal Profissional</h4>
-                                <p class="text-gray-300">Estabilização perfeita para vídeos suaves e movimentos cinematográficos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 relative mt-10 md:mt-0">
-                    <div class="relative max-w-md mx-auto grid grid-cols-2 gap-6">
-                        <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/s22 uti.png" alt="Samsung S22 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
-                            <h4 class="font-bold text-white">S22 Ultra</h4>
-                        </div>
-                        <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/nikon.png" alt="Nikon Camera" class="h-32 object-contain mb-4 rounded-xl shadow-md">
-                            <h4 class="font-bold text-white">Nikon</h4>
-                        </div>
-                        <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/gimbal.png" alt="Gimbal" class="h-32 object-contain mb-4 rounded-xl shadow-md">
-                            <h4 class="font-bold text-white">Gimbal</h4>
-                        </div>
-                        <div class="glass-card p-6 flex flex-col items-center">
-                            <i class="fas fa-laptop-code text-5xl text-purple-400 mb-4"></i>
-                            <h4 class="font-bold text-white">Edição Premium</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Map Section -->
+    <div class="h-96 bg-gray-300">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.1185378085884!2d-48.195033926069264!3d-18.658675982461855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a431962695d437%3A0x21a6be634d795758!2sLFT%20MMA!5e0!3m2!1spt-BR!2sbr!4v1751296871743!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
-    <!-- Contato / Agendamento -->
-    <section id="booking" class="py-20 px-6 fade-in bg-black bg-opacity-60">
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto glass-card overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-gradient-to-br from-purple-900 via-purple-800 to-black bg-opacity-90 p-10 flex flex-col justify-center">
-                        <img src="img/logo.png" alt="Logo MobileVision" class="mx-auto mb-10 h-32 w-32 object-contain rounded-full shadow-md bg-white bg-opacity-10 mt-2">
-                        <h2 class="text-3xl font-bold mb-6 gradient-text-animated">Agende Sua Sessão</h2>
-                        <p class="mb-6 opacity-90 text-gray-200">Preencha o formulário ao lado e entraremos em contato para confirmar os detalhes do seu projeto fotográfico ou de videografia.</p>
-                        <div class="flex items-center mb-4 text-gray-200">
-                            <i class="fas fa-phone-alt mr-4 text-xl"></i>
-                            <span class="font-semibold">Yuri Silva:</span> <span class="ml-2">+55 34 98830-2860</span>
-                        </div>
-                        <div class="flex items-center mb-4 text-gray-200">
-                            <i class="fas fa-phone-alt mr-4 text-xl"></i>
-                            <span class="font-semibold">Davi Gomes:</span> <span class="ml-2">+55 34 99207-9251</span>
-                        </div>
-                        <div class="flex items-center text-gray-200">
-                            <i class="fas fa-envelope mr-4 text-xl"></i>
-                            <span>yurisilva@zt1cw.onmicrosoft.com</span>
-                        </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-4">
+                        <img src="img/criar.png" alt="Logo Criador" class="h-12">
+                        <span class="text-xl font-bold">Mobile Vision</span>
                     </div>
-                    <div class="md:w-1/2 p-10 bg-black bg-opacity-60 text-gray-100">
-                        <form id="booking-form" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-200 mb-1">Nome Completo*</label>
-                                <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-200 mb-1">Email*</label>
-                                <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-200 mb-1">Telefone*</label>
-                                <input type="tel" id="phone" name="phone" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500">
-                            </div>
-                            <div>
-                                <label for="service" class="block text-sm font-medium text-gray-200 mb-1">Serviço Desejado*</label>
-                                <select id="service" name="service" required class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white rounded-lg focus:border-pink-500 focus:ring-pink-500">
-                                    <option value="">-- Selecione --</option>
-                                    <option value="fotografia">Fotografia</option>
-                                    <option value="videografia">Videografia</option>
-                                    <option value="ambos">Fotografia + Videografia</option>
-                                    <option value="edicao">Edição de Fotos/Vídeos</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="date" class="block text-sm font-medium text-gray-200 mb-1">Data Preferencial</label>
-                                <input type="date" id="date" name="date" class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white rounded-lg focus:border-pink-500 focus:ring-pink-500">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-200 mb-1">Detalhes do Projeto</label>
-                                <textarea id="message" name="message" rows="3" class="form-input w-full px-4 py-3 border border-purple-700 bg-gray-900 text-white placeholder-gray-400 rounded-lg focus:border-pink-500 focus:ring-pink-500"></textarea>
-                            </div>
-                            <div>
-                                <button type="button" id="open-modal" class="w-full bg-gradient-to-r from-purple-700 via-pink-500 to-purple-800 text-white font-bold py-3 px-6 rounded-lg hover:from-pink-600 hover:to-purple-900 transition focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 flex items-center justify-center gap-2">
-                                    <i class="fas fa-paper-plane"></i> Enviar Solicitação
-                                </button>
-                            </div>
-                        </form>
-                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-lg">
-                            <i class="fas fa-check-circle mr-2"></i> Seu agendamento foi enviado com sucesso! Entraremos em contato em breve.
-                        </div>
-                        <!-- Modal de escolha de destinatário -->
-                        <div id="modal-destinatario" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
-                            <div class="bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-xs w-full border-2 border-purple-700">
-                                <h3 class="text-xl font-bold text-white mb-6 text-center">Enviar para:</h3>
-                                <div class="flex flex-col gap-4">
-                                    <button id="send-yuri" class="w-full bg-gradient-to-r from-purple-700 via-pink-500 to-purple-800 text-white font-bold py-3 rounded-lg hover:from-pink-600 hover:to-purple-900 transition flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Yuri Silva</button>
-                                    <button id="send-davi" class="w-full bg-gradient-to-r from-purple-700 via-blue-500 to-purple-800 text-white font-bold py-3 rounded-lg hover:from-blue-600 hover:to-purple-900 transition flex items-center justify-center gap-2"><i class="fas fa-camera"></i> Davi Gomes</button>
-                                </div>
-                                <button id="close-modal" class="mt-6 w-full text-gray-400 hover:text-pink-400 text-sm">Cancelar</button>
-                            </div>
-                        </div>
+                    <p class="mt-4 text-gray-400 max-w-md">Transformando ideias em soluções digitais.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Serviços</h4>
+                        <ul class="space-y-2">
+                            <li><span class="text-gray-400">Fotografia</span></li>
+                            <li><span class="text-gray-400">Videografia</span></li>
+                            <li><span class="text-gray-400">Edição</span></li>
+                            <li><span class="text-gray-400">Criação de Site</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Contato</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+                                <span class="text-gray-400">(34) 98830-2860</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope mr-2 text-gray-400"></i>
+                                <span class="text-gray-400">yurisilva@zt1cw.onmicrosoft.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4">Portfólio do Criador</h4>
+                        <ul class="space-y-2">
+                            <li><a href="https://www.instagram.com/mobilevision4/" class="text-gray-400 hover:text-white transition duration-300" target="_blank"><i class="fab fa-instagram mr-2"></i>Instagram</a></li>
+                            <li><a href="https://1928370.github.io/Postfolio/?fbclid=PAZXh0bgNhZW0CMTEAAaf1vB-LGG5ZG5xvKK-8F2Jl62hFqdb4qoiMLRFZvI4j9B2yKo0PThUdA8pGlg_aem_IHPYOS-n5lgJbMwuqi4b5w" class="text-gray-400 hover:text-white transition duration-300" target="_blank">Portfólio do Criador</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <script>
-    // Função para montar mensagem personalizada
-    function buildBookingMessage(data) {
-        // Formata a data para dd/mm/aaaa
-        let dataFormatada = data.date;
-        if (dataFormatada) {
-            const partes = dataFormatada.split('-');
-            if (partes.length === 3) {
-                dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
-            }
-        } else {
-            dataFormatada = 'A combinar';
-        }
-        return encodeURIComponent(
-            `✨ *Agendamento MobileVision* ✨\n` +
-            `━━━━━━━━━━━━━━━━━━━━━━\n` +
-            `👤 *Nome:* _${data.name}_\n` +
-            `✉️ *E-mail:* _${data.email}_\n` +
-            `📱 *Telefone:* _${data.phone}_\n` +
-            `🗓️ *Data:* _${dataFormatada}_\n` +
-            `🎯 *Serviço:* _${data.service}_\n` +
-            (data.message ? `💬 *Detalhes:* _${data.message}_\n` : '') +
-            `━━━━━━━━━━━━━━━━━━━━━━\n` +
-            `📸 _Solicitação enviada pelo site em ${new Date().toLocaleDateString('pt-BR')}!_`
-        );
-    }
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0 cursor-pointer hover:underline" id="termo-direitos">© 2025 Mobile Vision. Todos os direitos reservados.</p>
+            </div>
+            <div class="text-center mt-6">
 
-    function sendBookingToSheet(data) {
-        const endpoint = 'https://script.google.com/macros/s/AKfycbxOpG7ITmTMNHluRxiAXuDw5VZYjAc-zLNg-birE4edHwAQkufN1B9OCOkNxN3RZO7L/exec';
-        fetch(endpoint, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        });
-    }
-
-    (function() {
-        const form = document.getElementById('booking-form');
-        const btnOpenModal = document.getElementById('open-modal');
-        const modal = document.getElementById('modal-destinatario');
-        const btnYuri = document.getElementById('send-yuri');
-        const btnDavi = document.getElementById('send-davi');
-        const btnClose = document.getElementById('close-modal');
-        const successMsg = document.getElementById('form-success');
-
-        function getFormData() {
-            return {
-                name: form.name.value,
-                email: form.email.value,
-                phone: form.phone.value,
-                service: form.service.value,
-                date: form.date.value,
-                message: form.message.value
-            };
-        }
-
-        function handleSend(destinatario, numero) {
-            const data = getFormData();
-            if (!data.name || !data.email || !data.phone || !data.service) {
-                alert('Preencha todos os campos obrigatórios!');
-                return;
-            }
-            data.destinatario = destinatario;
-            data.dataEnvio = new Date().toLocaleString('pt-BR');
-            data.sheetName = 'Eventos'; // Nome da aba da planilha Google
-            sendBookingToSheet(data);
-            const texto = buildBookingMessage(data);
-            window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
-            successMsg.classList.remove('hidden');
-            setTimeout(() => successMsg.classList.add('hidden'), 6000);
-            form.reset();
-            modal.classList.add('hidden');
-        }
-
-        btnOpenModal.addEventListener('click', function() {
-            modal.classList.remove('hidden');
-        });
-        btnClose.addEventListener('click', function() {
-            modal.classList.add('hidden');
-        });
-        btnYuri.addEventListener('click', function() {
-            handleSend('Yuri Silva', '5534988302860');
-        });
-        btnDavi.addEventListener('click', function() {
-            handleSend('Davi Gomes', '5534992079251');
-        });
-    })();
-    </script>
-
-    <!-- Rodapé -->
-    <footer class="py-10 px-6 bg-black bg-opacity-90">
-        <div class="container mx-auto text-center">
-            <img src="img/logo nome.png" alt="Logo MobileVision Nome" class="mx-auto mb-4 max-h-32 object-contain">
-            <p class="text-gray-400 text-sm">
-                &copy; 2025 MobileVision. Todos os direitos reservados.
-            </p>
-            <div class="flex justify-center space-x-4 mt-4">
-                
-                <a href="https://www.instagram.com/mobilevision4/" class="social-icon text-gray-400 hover:text-red-500 transition">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <span class="text-gray-500 text-sm block mb-4">Esta seção é dedicada ao criador do site.</span>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
     <script>
-        // Fade-in animado para cada seção ao rolar
+        // Splash Screen logic
         window.addEventListener('DOMContentLoaded', function() {
-            const fadeEls = document.querySelectorAll('.fade-in');
-            const onScroll = () => {
-                fadeEls.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if(rect.top < window.innerHeight - 60) {
-                        el.classList.add('visible');
+            setTimeout(function() {
+                const splash = document.getElementById('splash-screen');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => splash.style.display = 'none', 800);
+                }
+            }, 5000);
+        });
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
                     }
-                });
-            };
-            window.addEventListener('scroll', onScroll);
-            onScroll();
-        });
-
-        // Animação de flip para o cartão de visita
-        document.addEventListener('DOMContentLoaded', function() {
-          var card = document.querySelector('.business-card');
-          if(card) {
-            card.addEventListener('click', function() {
-              var inner = card.querySelector('.card-inner');
-              var back = card.querySelector('.card-back');
-              if(card.classList.toggle('flipped')) {
-                back.classList.remove('hidden');
-                inner.style.transform = 'rotateY(180deg)';
-              } else {
-                back.classList.add('hidden');
-                inner.style.transform = '';
-              }
+                }
             });
-          }
         });
-    </script>
-    <script>
-    function sendToSheet(data) {
-        const endpoint = 'https://script.google.com/macros/library/d/1D5dW2LY4GvLpeaQ3SSLPmCZkT9xLpmyUCgXfMOaJ5xrV-79rd7K9AqFF/2';
-        fetch(endpoint, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-    }
-
-    // Script para alternar exibição dos softwares de edição
-    document.addEventListener('DOMContentLoaded', function() {
-        var btnSoftwares = document.getElementById('btn-edicao-premium');
-        var blocoSoftwares = document.getElementById('softwares-edicao');
-        if(btnSoftwares && blocoSoftwares) {
-            btnSoftwares.addEventListener('click', function() {
-                var aberto = !blocoSoftwares.classList.contains('hidden');
-                blocoSoftwares.classList.toggle('hidden');
-                btnSoftwares.textContent = aberto ? 'Ver Softwares Utilizados' : 'Ocultar Softwares';
+        
+        // Form submission para WhatsApp
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nome = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const telefone = document.getElementById('phone').value.trim();
+                const interesse = document.getElementById('interest').value.trim();
+                const mensagem = document.getElementById('message').value.trim();
+                let erro = '';
+                if (!nome) erro += '- Nome completo obrigatório.\n';
+                if (!email) erro += '- E-mail obrigatório.\n';
+                if (!telefone) erro += '- Telefone obrigatório.\n';
+                if (!interesse) erro += '- Selecione uma modalidade de interesse.\n';
+                if (!mensagem) erro += '- Mensagem obrigatória.\n';
+                if (erro) {
+                    alert('Por favor, preencha todos os campos obrigatórios:\n\n' + erro);
+                    return;
+                }
+                let interesseLabel = '';
+                switch (interesse) {
+                    case 'muaythai': interesseLabel = 'Muay Thai'; break;
+                    case 'boxe': interesseLabel = 'Boxe'; break;
+                    case 'jiujitsu': interesseLabel = 'Jiu-Jitsu'; break;
+                    case 'all': interesseLabel = 'Todas as modalidades'; break;
+                    default: interesseLabel = '';
+                }
+                const texto =
+                    `Olá, equipe LFT MMA! Gostaria de agendar uma aula experimental ou obter mais informações.\n` +
+                    `\n` +
+                    `*Dados do interessado:*\n` +
+                    `• Nome: ${nome}\n` +
+                    `• E-mail: ${email}\n` +
+                    `• Telefone: ${telefone}\n` +
+                    (interesseLabel ? `• Interesse: ${interesseLabel}\n` : '') +
+                    (mensagem ? `• Mensagem: ${mensagem}\n` : '') +
+                    `\nAguardo retorno. Obrigado!`;
+                const url = `https://api.whatsapp.com/send?phone=5534984206130&text=${encodeURIComponent(texto)}`;
+                window.open(url, '_blank');
             });
         }
-    });
+        
+        // Termo de direitos reservados
+        const termoDireitos = document.getElementById('termo-direitos');
+        if (termoDireitos) {
+            termoDireitos.addEventListener('click', function() {
+                alert(`TERMO DE DIREITOS RESERVADOS\n\nEste site, incluindo todo o seu conteúdo visual, textual e funcional, é propriedade exclusiva de Mobile Vision.\n\nTodos os direitos autorais, marcas, logotipos, imagens, vídeos, textos, códigos e demais elementos presentes neste site estão protegidos pela legislação vigente.\n\nÉ proibida a reprodução, distribuição, modificação, exibição, transmissão ou qualquer uso não autorizado do conteúdo deste site sem a prévia autorização por escrito do titular.\n\nO uso do favicon e da identidade visual está vinculado à marca Mobile Vision.\n\nPara dúvidas ou solicitações, entre em contato: yurisilva@zt1cw.onmicrosoft.com\n\n<Mobile Vision>\n<link rel='icon' type='image/png' href='img/logo.png'>\n\n© 2025 Mobile Vision. Todos os direitos reservados.`);
+            });
+        }
     </script>
 </body>
 </html>
