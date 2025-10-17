@@ -7,201 +7,7 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-    :root {
-        --dark-blue: #0a192f;
-        --darker-blue: #020c1b;
-        --dark-red: #8b0000;
-        --accent-red: #d90429;
-        --glass-bg: rgba(20, 30, 48, 0.65);
-        --glass-border: rgba(255,255,255,0.18);
-        --neon-pink: #ff4dff;
-        --neon-blue: #4facfe;
-        --neon-purple: #a259ff;
-    }
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(120deg, #0a192f 0%, #1a0033 100%);
-        color: white;
-        overflow-x: hidden;
-    }
-    .gradient-bg {
-        background: linear-gradient(135deg, #0a192f 0%, #1a0033 50%, #8b0000 100%);
-    }
-    .gradient-text {
-        background: linear-gradient(90deg, #4facfe 0%, #a259ff 50%, #ff4dff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        filter: drop-shadow(0 2px 8px #a259ff88);
-    }
-    .nav-link {
-        position: relative;
-        transition: color 0.3s;
-    }
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background: linear-gradient(90deg, #ff4dff, #4facfe);
-        transition: width 0.3s;
-        border-radius: 2px;
-    }
-    .nav-link:hover, .nav-link:focus {
-        color: #ff4dff;
-        text-shadow: 0 0 8px #ff4dff99;
-    }
-    .nav-link:hover::after, .nav-link:focus::after {
-        width: 100%;
-    }
-    header {
-        background: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 4px 32px 0 #a259ff33;
-        backdrop-filter: blur(12px);
-        border-bottom: 1.5px solid #a259ff33;
-    }
-    .btn-primary {
-        background: linear-gradient(90deg, #a259ff 0%, #4facfe 100%);
-        border: none;
-        box-shadow: 0 0 16px 2px #a259ff55, 0 0 32px 8px #4facfe33;
-        letter-spacing: 1px;
-        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-    }
-    .btn-primary:hover, .btn-primary:focus {
-        background: linear-gradient(90deg, #ff4dff 0%, #4facfe 100%);
-        box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
-        transform: scale(1.05);
-    }
-    .glass-card {
-        background: var(--glass-bg);
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        backdrop-filter: blur(12px);
-        border-radius: 24px;
-        border: 1.5px solid var(--glass-border);
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .glass-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #a259ff;
-    }
-    .gradient-text-animated {
-        background: linear-gradient(270deg, #4facfe, #a259ff, #ff4dff, #d90429, #4facfe);
-        background-size: 1000% 1000%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: gradientMove 8s ease infinite;
-        filter: drop-shadow(0 2px 8px #a259ff88);
-    }
-    @keyframes gradientMove {
-        0% {background-position:0% 50%}
-        50% {background-position:100% 50%}
-        100% {background-position:0% 50%}
-    }
-    input, textarea, select {
-        background: rgba(30, 30, 50, 0.95)!important;
-        border: 1.5px solid #a259ff!important;
-        color: #fff!important;
-        box-shadow: 0 0 0 0 #a259ff00;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    input:focus, textarea:focus, select:focus {
-        box-shadow: 0 0 0 2px #ff4dff, 0 0 12px 2px #4facfe99;
-        border-color: #ff4dff;
-        outline: none;
-    }
-    .portfolio-item {
-        background: var(--glass-bg);
-        border: 1.5px solid #a259ff33;
-        box-shadow: 0 4px 24px 0 #4facfe22;
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .portfolio-item:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .business-card {
-        background: var(--glass-bg);
-        border-radius: 24px;
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        border: 1.5px solid #a259ff55;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    .business-card:hover {
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .mobile-showcase img {
-        box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
-        border: 2px solid #a259ff;
-        transition: box-shadow 0.3s, border-color 0.3s;
-    }
-    .mobile-showcase img:hover {
-        box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
-        border-color: #ff4dff;
-    }
-    .social-icon {
-        transition: all 0.3s;
-        filter: drop-shadow(0 2px 8px #a259ff55);
-    }
-    .social-icon:hover {
-        color: #ff4dff!important;
-        transform: translateY(-3px) scale(1.1);
-        filter: drop-shadow(0 2px 16px #ff4dff99);
-    }
-    footer {
-        background: rgba(10, 25, 47, 0.95);
-        box-shadow: 0 -4px 32px 0 #a259ff33;
-        border-top: 1.5px solid #a259ff33;
-        backdrop-filter: blur(8px);
-    }
-    footer img {
-        filter: drop-shadow(0 4px 24px #a259ff99);
-    }
-    /* Fade-in animado para cada seção ao rolar */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
-    }
-    .fade-in.visible {
-        opacity: 1;
-        transform: none;
-    }
-    /* Pequenos ajustes de espaçamento e responsividade */
-    @media (max-width: 768px) {
-        .glass-card, .portfolio-item, .business-card {
-            border-radius: 16px;
-        }
-        .mobile-showcase img {
-            border-radius: 16px;
-        }
-        .gradient-text, .gradient-text-animated {
-            font-size: 1.5rem;
-        }
-    }
-    /* Parcerias - Destaque para as logos */
-    .parceiro-logo {
-        width: 2.75rem; /* 44px */
-        height: 2.75rem;
-        border-radius: 9999px;
-        object-fit: cover;
-        border: 3px solid #fff;
-        background: rgba(30,30,50,0.85);
-        box-shadow: 0 0 16px 4px #a259ff55, 0 2px 8px 0 #ff4dff55;
-        transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
-    }
-    .parceiro-logo:hover {
-        box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
-        border-color: #ff4dff;
-        transform: scale(1.08);
-    }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="gradient-bg min-h-screen">
     <!-- Cabeçalho -->
@@ -279,6 +85,10 @@
                             <img src="img/LFT.png" alt="LFT-MMA" class="parceiro-logo"> 
                             <span>🤝 LFT-MMA</span>
                         </a>
+                        <a href="https://m.youtube.com/@TVJG361" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-purple-300 via-pink-300 to-blue-400 text-gray-900 shadow hover:from-purple-400 hover:to-pink-400 transition border-2 border-white/30 flex items-center gap-3" title="Parceria: TV JG">
+                            <img src="img/jg.png" alt="TV JG" class="parceiro-logo"> 
+                            <span>TV JG</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -286,7 +96,7 @@
             <div class="md:w-1/2 flex justify-center">
                 <div class="mobile-showcase p-4 max-w-xs">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                        <img src="img/inicio.jpg" 
                              alt="Fotografia mobile" 
                              class="rounded-lg border-2 border-gray-700 shadow-xl">
                         <div class="absolute -bottom-5 -right-5 bg-red-600 text-white p-2 rounded-full shadow-lg">
