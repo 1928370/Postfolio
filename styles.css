@@ -1,0 +1,263 @@
+:root {
+    --dark-blue: #0a192f;
+    --darker-blue: #020c1b;
+    --dark-red: #8b0000;
+    --accent-red: #d90429;
+    --glass-bg: rgba(20, 30, 48, 0.65);
+    --glass-border: rgba(255,255,255,0.18);
+    --neon-pink: #ff4dff;
+    --neon-blue: #4facfe;
+    --neon-purple: #a259ff;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(120deg, #0a192f 0%, #1a0033 100%);
+    color: white;
+    overflow-x: hidden;
+}
+.gradient-bg {
+    background: linear-gradient(135deg, #0a192f 0%, #1a0033 50%, #8b0000 100%);
+}
+.gradient-text {
+    background: linear-gradient(90deg, #4facfe 0%, #a259ff 50%, #ff4dff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 8px #a259ff88);
+}
+.nav-link {
+    position: relative;
+    transition: color 0.3s;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, #ff4dff, #4facfe);
+    transition: width 0.3s;
+    border-radius: 2px;
+}
+.nav-link:hover, .nav-link:focus {
+    color: #ff4dff;
+    text-shadow: 0 0 8px #ff4dff99;
+}
+.nav-link:hover::after, .nav-link:focus::after {
+    width: 100%;
+}
+header {
+    background: rgba(10, 25, 47, 0.85);
+    box-shadow: 0 4px 32px 0 #a259ff33;
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid #a259ff33;
+}
+.btn-primary {
+    background: linear-gradient(90deg, #a259ff 0%, #4facfe 100%);
+    border: none;
+    box-shadow: 0 0 16px 2px #a259ff55, 0 0 32px 8px #4facfe33;
+    letter-spacing: 1px;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background: linear-gradient(90deg, #ff4dff 0%, #4facfe 100%);
+    box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
+    transform: scale(1.05);
+}
+.glass-card {
+    background: var(--glass-bg);
+    box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 1.5px solid var(--glass-border);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+    border-color: #a259ff;
+}
+.gradient-text-animated {
+    background: linear-gradient(270deg, #4facfe, #a259ff, #ff4dff, #d90429, #4facfe);
+    background-size: 1000% 1000%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 8s ease infinite;
+    filter: drop-shadow(0 2px 8px #a259ff88);
+}
+@keyframes gradientMove {
+    0% {background-position:0% 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0% 50%}
+}
+input, textarea, select {
+    background: rgba(30, 30, 50, 0.95)!important;
+    border: 1.5px solid #a259ff!important;
+    color: #fff!important;
+    box-shadow: 0 0 0 0 #a259ff00;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+input:focus, textarea:focus, select:focus {
+    box-shadow: 0 0 0 2px #ff4dff, 0 0 12px 2px #4facfe99;
+    border-color: #ff4dff;
+    outline: none;
+}
+.portfolio-item {
+    background: var(--glass-bg);
+    border: 1.5px solid #a259ff33;
+    box-shadow: 0 4px 24px 0 #4facfe22;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.portfolio-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+    border-color: #ff4dff;
+}
+.business-card {
+    background: var(--glass-bg);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+    border: 1.5px solid #a259ff55;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.business-card:hover {
+    box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+    border-color: #ff4dff;
+}
+.mobile-showcase img {
+    box-shadow: 0 8px 32px 0 #a259ff33, 0 2px 8px 0 #4facfe22;
+    border: 2px solid #a259ff;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.mobile-showcase img:hover {
+    box-shadow: 0 16px 40px 0 #ff4dff44, 0 4px 16px 0 #4facfe44;
+    border-color: #ff4dff;
+}
+.social-icon {
+    transition: all 0.3s;
+    filter: drop-shadow(0 2px 8px #a259ff55);
+}
+.social-icon:hover {
+    color: #ff4dff!important;
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 2px 16px #ff4dff99);
+}
+footer {
+    background: rgba(10, 25, 47, 0.95);
+    box-shadow: 0 -4px 32px 0 #a259ff33;
+    border-top: 1.5px solid #a259ff33;
+    backdrop-filter: blur(8px);
+}
+footer img {
+    filter: drop-shadow(0 4px 24px #a259ff99);
+}
+/* Fade-in animado para cada seção ao rolar */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: none;
+}
+/* Pequenos ajustes de espaçamento e responsividade */
+@media (max-width: 768px) {
+    .glass-card, .portfolio-item, .business-card {
+        border-radius: 16px;
+    }
+    .mobile-showcase img {
+        border-radius: 16px;
+    }
+    .gradient-text, .gradient-text-animated {
+        font-size: 1.5rem;
+    }
+}
+/* Parcerias - Destaque para as logos */
+.parceiro-logo {
+    width: 2.75rem; /* 44px */
+    height: 2.75rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    background: rgba(30,30,50,0.85);
+    box-shadow: 0 0 16px 4px #a259ff55, 0 2px 8px 0 #ff4dff55;
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
+}
+.parceiro-logo:hover {
+    box-shadow: 0 0 32px 8px #ff4dff99, 0 0 64px 16px #4facfe55;
+    border-color: #ff4dff;
+    transform: scale(1.08);
+}
+
+/* Mobile-first improvements */
+@media (max-width: 768px) {
+    /* Hero: tornar mais legível e empilhar CTAs */
+    #home h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.15 !important;
+        text-align: center;
+    }
+    #home p {
+        text-align: center;
+        font-size: 1rem;
+    }
+    #home .flex.space-x-4 {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
+    }
+    #home .flex.space-x-4 a {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Showcase: imagem maior e responsiva */
+    .mobile-showcase { max-width: 100%; padding: 0 1rem; }
+    .mobile-showcase img { width: 100%; height: auto; border-radius: 12px; }
+
+    /* Centralizar parcerias e aumentar toque */
+    #home .flex.flex-wrap.gap-2 { justify-content: center; }
+    .parceiro-logo { width: 3.25rem; height: 3.25rem; }
+
+    /* Suavizar sombras para performance */
+    .glass-card, .portfolio-item { border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.28); }
+
+    /* Desativar animações pesadas */
+    .gradient-text-animated { animation: none !important; }
+}
+
+/* Menu mobile: quando visível ocupa toda a tela e aumenta alvos touch */
+#mobile-menu:not(.hidden) {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    background: rgba(0,0,0,0.98);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+#mobile-menu .nav-link { font-size: 1.25rem; display: block; padding: 0.75rem 1rem; text-align: center; }
+
+/* Pequenos ajustes para rodapé em mobile */
+@media (max-width: 420px) {
+    footer img { max-height: 72px; }
+}
+
+/* Pequenas melhorias de acessibilidade e layout */
+.header-container { max-width: 1180px; margin: 0 auto; padding: 0 1rem; }
+.nav-cta { display: flex; gap: 0.5rem; align-items: center; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 1rem; }
+
+/* Form improvements */
+.form-input[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+/* Simple spinner */
+.spinner { border: 3px solid rgba(255,255,255,0.12); border-top: 3px solid #fff; border-radius: 50%; width: 18px; height: 18px; animation: spin 0.8s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
