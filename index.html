@@ -28,7 +28,7 @@
                 </nav>
                 
                 <div class="md:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none">
+                    <button id="menu-toggle" class="text-white focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -36,7 +36,7 @@
         </div>
         
         <!-- Menu Mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 py-4 px-6">
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 py-4 px-6" role="menu" aria-label="Menu principal">
             <div class="flex flex-col space-y-4">
                 <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
                 <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
