@@ -22,4 +22,31 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Typing effect for the main title
+    const typingText = document.getElementById('typing-text');
+    const text = "Capturando momentos com excelência";
+    let index = 0;
+    function typeWriter() {
+        if (index < text.length) {
+            typingText.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    typeWriter();
+
+    // Splash screen
+    setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        const header = document.getElementById('main-header');
+        if (splash) {
+            splash.style.transition = 'opacity 1s ease-out';
+            splash.style.opacity = '0';
+            setTimeout(() => splash.remove(), 1000);
+        }
+        if (header) {
+            header.classList.remove('hidden');
+        }
+    }, 3000);
 });
