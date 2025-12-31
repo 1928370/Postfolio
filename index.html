@@ -10,18 +10,27 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="gradient-bg min-h-screen">
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-purple-900 to-black">
+        <div class="text-center">
+            <img src="img/logo nome.png" alt="Logo MobileVision" class="w-32 h-32 object-contain mb-4 logo-splash">
+            <h1 class="text-2xl font-bold gradient-text">MobileVision</h1>
+        </div>
+    </div>
+
     <!-- Cabeçalho -->
-    <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
+    <header class="fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm hidden" id="main-header">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <img src="img/logo.png" alt="Logo MobileVision" class="h-10 w-10 object-contain rounded-full shadow-md bg-white bg-opacity-10">
+                    <img src="img/logo nome.png" alt="Logo MobileVision" class="h-10 w-10 object-contain rounded-full shadow-md bg-white bg-opacity-10 logo-animation">
                     <a href="#" class="text-2xl font-bold gradient-text">MobileVision</a>
                 </div>
                 
                 <nav class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
                     <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
+                    <a href="#team" class="nav-link text-white hover:text-red-400">Equipe</a>
                     <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
                     <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
                     <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
@@ -40,6 +49,7 @@
             <div class="flex flex-col space-y-4">
                 <a href="#home" class="nav-link text-white hover:text-red-400">Início</a>
                 <a href="#about" class="nav-link text-white hover:text-red-400">Sobre</a>
+                <a href="#team" class="nav-link text-white hover:text-red-400">Equipe</a>
                 <a href="#portfolio" class="nav-link text-white hover:text-red-400">Portfólio</a>
                 <a href="#services" class="nav-link text-white hover:text-red-400">Nossos Serviços</a>
                 <a href="#booking" class="nav-link text-white hover:text-red-400">Contato</a>
@@ -52,8 +62,7 @@
         <div class="container mx-auto flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-12 md:mb-0">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                    <span class="gradient-text">Capturando</span> momentos <br>
-                    <span class="text-white">com</span> <span class="gradient-text">excelência</span>
+                    <span class="gradient-text typing-effect" id="typing-text"></span>
                 </h1>
                 <p class="text-lg text-gray-300 mb-8">
                     Transformando visões em realidade através da fotografia e videografia mobile. 
@@ -70,25 +79,49 @@
                 </div>
                 
                 <!-- Parceria -->
-                <div class="mt-8">
-                    <div class="mb-1 ml-1 text-xs font-semibold text-gray-300 tracking-widest uppercase">Parceria</div>
-                    <div class="flex flex-wrap gap-2">
-                        <a href="https://www.instagram.com/alegriafest_/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-yellow-300 via-pink-300 to-yellow-400 text-gray-900 shadow hover:from-yellow-400 hover:to-pink-400 transition border-2 border-white/30 flex items-center gap-3" title="Parceria: Alegria Fest">
-                            <img src="img/alegria.png" alt="Alegria Fest" class="parceiro-logo"> 
-                            <span>🤝 Alegria Fest</span>
-                        </a>
-                        <a href="https://www.instagram.com/locomotivadaalegriaofc/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-green-300 via-blue-200 to-green-400 text-gray-900 shadow hover:from-green-400 hover:to-blue-300 transition border-2 border-white/30 flex items-center gap-3" title="Parceria: Locomotiva da Alegria">
-                            <img src="img/locomotiva.png" alt="Locomotiva da Alegria" class="parceiro-logo"> 
-                            <span>🤝 Locomotiva da Alegria</span>
-                        </a>
-                        <a href="https://www.instagram.com/lft.mma/" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-green-300 via-blue-200 to-green-400 text-gray-900 shadow hover:from-green-400 hover:to-blue-300 transition border-2 border-white/30 flex items-center gap-3" title="Parceria: LFT-MMA">
-                            <img src="img/LFT.png" alt="LFT-MMA" class="parceiro-logo"> 
-                            <span>🤝 LFT-MMA</span>
-                        </a>
-                        <a href="https://m.youtube.com/@TVJG361" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full font-semibold text-xs bg-gradient-to-r from-purple-300 via-pink-300 to-blue-400 text-gray-900 shadow hover:from-purple-400 hover:to-pink-400 transition border-2 border-white/30 flex items-center gap-3" title="Parceria: TV JG">
-                            <img src="img/jg.png" alt="TV JG" class="parceiro-logo"> 
-                            <span>TV JG</span>
-                        </a>
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">Nossas Parcerias</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-card p-6 flex flex-col items-center text-center">
+                            <img src="img/alegria.png" alt="Alegria Fest" class="w-16 h-16 object-contain mb-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-white mb-2">Alegria Fest</h4>
+                            <p class="text-gray-300 text-sm mb-4">Evento de alegria e diversão.</p>
+                            <a href="https://www.instagram.com/alegriafest_/" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-bold rounded-lg hover:from-yellow-500 hover:to-pink-600 transition">
+                                Ver no Instagram
+                            </a>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center text-center">
+                            <img src="img/locomotiva.png" alt="Locomotiva da Alegria" class="w-16 h-16 object-contain mb-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-white mb-2">Locomotiva da Alegria</h4>
+                            <p class="text-gray-300 text-sm mb-4">Projetos sociais e recreativos.</p>
+                            <a href="https://www.instagram.com/locomotivadaalegriaofc/" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-lg hover:from-green-500 hover:to-blue-600 transition">
+                                Ver no Instagram
+                            </a>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center text-center">
+                            <img src="img/LFT.png" alt="LFT-MMA" class="w-16 h-16 object-contain mb-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-white mb-2">LFT-MMA</h4>
+                            <p class="text-gray-300 text-sm mb-4">Artes marciais e esportes.</p>
+                            <a href="https://www.instagram.com/lft.mma/" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold rounded-lg hover:from-green-500 hover:to-blue-600 transition">
+                                Ver no Instagram
+                            </a>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center text-center">
+                            <img src="img/jg.png" alt="TV JG" class="w-16 h-16 object-contain mb-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-white mb-2">TV JG</h4>
+                            <p class="text-gray-300 text-sm mb-4">Conteúdo audiovisual.</p>
+                            <a href="https://m.youtube.com/@TVJG361" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold rounded-lg hover:from-purple-500 hover:to-pink-600 transition">
+                                Ver no YouTube
+                            </a>
+                        </div>
+                        <div class="glass-card p-6 flex flex-col items-center text-center">
+                            <img src="img/criança.png" alt="Patrulha da Criança" class="w-16 h-16 object-contain mb-4 rounded-lg">
+                            <h4 class="text-lg font-bold text-white mb-2">Patrulha da Criança</h4>
+                            <p class="text-gray-300 text-sm mb-4">Recreação infantil.</p>
+                            <a href="https://www.instagram.com/patrulhadacrianca_recreacao/" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold rounded-lg hover:from-purple-500 hover:to-pink-600 transition">
+                                Ver no Instagram
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,7 +146,7 @@
         <div class="container mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="gradient-text">Sobre</span> <span class="text-white">Mim</span>
+                    <span class="gradient-text">Sobre</span> <span class="text-white">Nós</span>
                 </h2>
                 <div class="w-20 h-1 bg-red-500 mx-auto"></div>
             </div>
@@ -138,13 +171,13 @@
                 
                 <div class="md:w-2/3 md:pl-12">
                     <div class="mb-10">
-                        <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-red-400">Olá, eu sou Yuri Silva - Fundador da MobileVision</h3>
                         <p class="text-gray-300 mb-6">
-                            Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S22 Ultra para explorar e aprender cada vez mais sobre esse universo criativo.
+                            Estou começando minha jornada em fotografia e videografia mobile, apaixonado por capturar momentos únicos e transformá-los em memórias especiais. Utilizo um Samsung S23 Ultra e agora contamos com uma câmera Canon T5i para explorar e aprender cada vez mais sobre esse universo criativo.
                         </p>
                     </div>
                     <div class="mb-10">
-                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Olá, eu sou Davi Gomes</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-blue-400">Olá, eu sou Davi Gomes - Co-fundador da MobileVision</h3>
                         <p class="text-gray-300 mb-6">
                             Entusiasta da fotografia, busco eternizar emoções e histórias através das lentes do meu smartphone. Acredito que cada imagem tem o poder de inspirar e conectar pessoas, e estou sempre em busca de novos olhares e experiências para compartilhar.
                         </p>
@@ -177,6 +210,106 @@
                         <div class="bg-gray-900 bg-opacity-50 px-4 py-2 rounded-full">
                             <span class="text-white"><i class="fas fa-check text-red-500 mr-2"></i> Pós-produção</span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa Equipe -->
+    <section id="team" class="py-20 px-6 bg-black bg-opacity-30 fade-in">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Nossa</span> <span class="text-white">Equipe</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto mt-4">
+                    Contamos com uma equipe talentosa de fotógrafos e videomakers para atender às suas necessidades com excelência.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Fundador 1 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <img src="img/eu.jpg" alt="Yuri Silva" class="w-24 h-24 object-cover rounded-full mb-4 border-4 border-red-500">
+                    <h3 class="text-xl font-bold text-white mb-2">Yuri Silva</h3>
+                    <p class="text-gray-300 text-sm mb-4">Fundador & Fotógrafo Principal</p>
+                    <div class="flex space-x-2">
+                        <i class="fab fa-instagram text-pink-400"></i>
+                        <span class="text-gray-400">@mobilevision4</span>
+                    </div>
+                </div>
+                <!-- Fundador 2 -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <img src="img/Davi.png" alt="Davi Gomes" class="w-24 h-24 object-cover rounded-full mb-4 border-4 border-blue-500">
+                    <h3 class="text-xl font-bold text-white mb-2">Davi Gomes</h3>
+                    <p class="text-gray-300 text-sm mb-4">Co-fundador & Videomaker</p>
+                    <div class="flex space-x-2">
+                        <i class="fab fa-instagram text-pink-400"></i>
+                        <span class="text-gray-400">@davidacruzg</span>
+                    </div>
+                </div>
+                <!-- Equipe -->
+                <div class="glass-card p-6 flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Equipe</h3>
+                    <p class="text-gray-300 text-sm mb-4">Colaboradores especializados em fotografia e videografia.</p>
+                    <button id="btn-equipe" class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg hover:from-purple-600 hover:to-pink-600 transition">Ver Equipe</button>
+                    <div id="equipe-list" class="hidden mt-6 w-full">
+                        <h4 class="text-lg font-bold text-white mb-4">Fotógrafos</h4>
+                        <table class="w-full text-left text-gray-300 mb-6">
+                            <thead>
+                                <tr class="border-b border-gray-600">
+                                    <th class="py-2">Nome</th>
+                                    <th class="py-2">Função</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-2">Yuri Silva (Fundador)</td>
+                                    <td class="py-2">Fotógrafo e Videomaker</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-2">Davi Gomes (Co-fundador)</td>
+                                    <td class="py-2">Fotógrafo</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Diego Lopes</td>
+                                    <td class="py-2">Fotógrafo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h4 class="text-lg font-bold text-white mb-4">Videomakers</h4>
+                        <table class="w-full text-left text-gray-300">
+                            <thead>
+                                <tr class="border-b border-gray-600">
+                                    <th class="py-2">Nome</th>
+                                    <th class="py-2">Função</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-2">Yuri Silva (Fundador)</td>
+                                    <td class="py-2">Fotógrafo e Videomaker</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-2">Jean Oliveira</td>
+                                    <td class="py-2">Videomaker</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="py-2">Gabriel Roque</td>
+                                    <td class="py-2">Videomaker</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2">Lucas Nascimento</td>
+                                    <td class="py-2">Videomaker</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-gray-400 mt-4">* Atribuição depende do contrato e projeto específico.</p>
                     </div>
                 </div>
             </div>
@@ -222,7 +355,7 @@
                         <i class="fas fa-camera-retro text-purple-300 text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">Fotografia Profissional</h3>
-                    <p class="text-gray-300 mb-4">Imagens de alta qualidade capturadas com Samsung S22 Ultra e equipamentos complementares para realçar cada detalhe.</p>
+                    <p class="text-gray-300 mb-4">Imagens de alta qualidade capturadas com Samsung S23 Ultra e equipamentos complementares para realçar cada detalhe.</p>
                     <ul class="space-y-2 text-gray-200">
                         <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Retratos</li>
                         <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Eventos</li>
@@ -255,32 +388,20 @@
                         <li class="flex items-center justify-center"><i class="fas fa-check-circle text-green-400 mr-2"></i> Efeitos especiais</li>
                     </ul>
                     <button id="btn-edicao-premium" class="mt-6 px-5 py-2 rounded-full bg-gradient-to-r from-yellow-400 via-pink-400 to-yellow-300 text-gray-900 font-bold text-sm shadow hover:from-yellow-500 hover:to-pink-500 transition">Ver Softwares Utilizados</button>
-                    <div id="softwares-edicao" class="hidden mt-6 w-full">
-                        <div class="text-left mb-2">
-                            <span class="font-bold text-yellow-300 text-sm">Vídeo</span>
+                    <div id="softwares-edicao" class="hidden mt-6 w-full text-left">
+                        <div class="mb-4">
+                            <h4 class="font-bold text-yellow-300 text-sm mb-2">Vídeo</h4>
+                            <ul class="list-disc list-inside text-gray-200 space-y-1">
+                                <li>Capcut</li>
+                                <li>Premiere</li>
+                            </ul>
                         </div>
-                        <div class="flex gap-4 mb-4">
-                            <div class="flex flex-col items-center">
-                                <img src="img/capcut.png" alt="Capcut" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Capcut</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <img src="img/primiere.jpg" alt="Premiere" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Premiere</span>
-                            </div>
-                        </div>
-                        <div class="text-left mb-2">
-                            <span class="font-bold text-yellow-300 text-sm">Fotos</span>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="flex flex-col items-center">
-                                <img src="img/adobe-lightroom.png" alt="Adobe Lightroom" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Lightroom</span>
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <img src="img/photoroom.png" alt="Photoroom" class="w-12 h-12 rounded-lg object-contain border border-white/30 bg-white/10">
-                                <span class="text-xs text-gray-200 mt-1">Photoroom</span>
-                            </div>
+                        <div>
+                            <h4 class="font-bold text-yellow-300 text-sm mb-2">Fotos</h4>
+                            <ul class="list-disc list-inside text-gray-200 space-y-1">
+                                <li>Lightroom</li>
+                                <li>Photoroom</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -301,7 +422,7 @@
                                 <i class="fas fa-mobile-alt text-purple-300 text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-lg text-white mb-1">Samsung Galaxy S22 Ultra</h4>
+                                <h4 class="font-bold text-lg text-white mb-1">Samsung Galaxy S23 Ultra</h4>
                                 <p class="text-gray-300">Câmera principal de 108MP, zoom óptico 10x e gravação 8K para imagens incríveis.</p>
                             </div>
                         </div>
@@ -310,7 +431,7 @@
                                 <i class="fas fa-camera text-blue-300 text-xl"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-lg text-white mb-1">Câmera Nikon (opcional)</h4>
+                                <h4 class="font-bold text-lg text-white mb-1">Câmera Canon T5i</h4>
                                 <p class="text-gray-300">Para situações que demandam ainda mais qualidade e controle manual.</p>
                             </div>
                         </div>
@@ -328,12 +449,12 @@
                 <div class="md:w-1/2 relative mt-10 md:mt-0">
                     <div class="relative max-w-md mx-auto grid grid-cols-2 gap-6">
                         <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/s22 uti.png" alt="Samsung S22 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
-                            <h4 class="font-bold text-white">S22 Ultra</h4>
+                            <img src="img/s22 uti.png" alt="Samsung S23 Ultra" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <h4 class="font-bold text-white">S23 Ultra</h4>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center">
-                            <img src="img/nikon.png" alt="Nikon Camera" class="h-32 object-contain mb-4 rounded-xl shadow-md">
-                            <h4 class="font-bold text-white">Nikon</h4>
+                            <img src="img/nikon.png" alt="Canon T5i Camera" class="h-32 object-contain mb-4 rounded-xl shadow-md">
+                            <h4 class="font-bold text-white">Canon T5i</h4>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center">
                             <img src="img/gimbal.png" alt="Gimbal" class="h-32 object-contain mb-4 rounded-xl shadow-md">
@@ -591,6 +712,17 @@
                 var aberto = !blocoSoftwares.classList.contains('hidden');
                 blocoSoftwares.classList.toggle('hidden');
                 btnSoftwares.textContent = aberto ? 'Ver Softwares Utilizados' : 'Ocultar Softwares';
+            });
+        }
+
+        // Script para alternar exibição dos freelancers
+        var btnFreelancers = document.getElementById('btn-equipe');
+        var blocoFreelancers = document.getElementById('equipe-list');
+        if(btnFreelancers && blocoFreelancers) {
+            btnFreelancers.addEventListener('click', function() {
+                var aberto = !blocoFreelancers.classList.contains('hidden');
+                blocoFreelancers.classList.toggle('hidden');
+                btnFreelancers.textContent = aberto ? 'Ver Equipe' : 'Ocultar Equipe';
             });
         }
     });
